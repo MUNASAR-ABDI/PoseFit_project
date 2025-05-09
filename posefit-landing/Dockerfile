@@ -9,21 +9,17 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 ENV NEXT_FONT_GOOGLE_MOCKED=true
 
-# Copy package.json and package-lock.json
+# Copy package files
 COPY package*.json ./
 
-# Clear npm cache and install all dependencies (including dev dependencies)
-RUN npm cache clean --force && \
-    npm install --production=false
+# Install dependencies
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
 
 # Build the application
 RUN npm run build
-
-# Prune dev dependencies
-RUN npm prune --production
 
 # Expose the port the app runs on
 EXPOSE 3000
