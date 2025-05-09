@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -35,7 +35,11 @@ export default function TerminalPage() {
   const totalSets = parseInt(searchParams.get('sets') || '0');
   const repsPerSet = parseInt(searchParams.get('reps') || '0');
 
-  const initializeWorkout = async () => {
+  const addOutput = useCallback((message: string) => {
+    setOutput(prev => [...prev, message]);
+  }, []);
+
+  const initializeWorkout = useCallback(async () => {
     try {
       const response = await fetch('/api/workout/start', {
         method: 'POST',
@@ -64,11 +68,11 @@ export default function TerminalPage() {
       setSessionId(data.session_id);
       setIsStarted(true);
       addOutput('Workout started! Complete your first rep...');
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error initializing workout:', error);
-      setError(error.message);
+      setError(error instanceof Error ? error.message : 'An unknown error occurred');
     }
-  };
+  }, [exercise, totalSets, repsPerSet, router, addOutput]);
 
   useEffect(() => {
     if (exercise && repsPerSet && totalSets) {
@@ -81,37 +85,6 @@ export default function TerminalPage() {
       initializeWorkout();
     }
   }, [sessionId, initializeWorkout]);
-
-  const addOutput = (message: string) => {
-    setOutput(prev => [...prev, message]);
-  };
-
-  const startProcessing = async () => {
-    while (isProcessing) {
-      try {
-        const response = await fetch('/api/workout/process-frame', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId }),
-          credentials: 'include'
-        });
-
-        if (!response.ok) {
-          throw new Error(await response.text());
-        }
-
-        const data = await response.json();
-        setMetrics(data.metrics ?? metrics);
-        
-        // Add a small delay to prevent overwhelming the server
-        await new Promise(resolve => setTimeout(resolve, 100));
-      } catch (error) {
-        console.error('Error processing frame:', error);
-        setError('Error processing frame. Please try again.');
-        break;
-      }
-    }
-  };
 
   const completeRep = async () => {
     try {
@@ -147,7 +120,7 @@ export default function TerminalPage() {
         setCurrentRep(newRep);
         addOutput(`Rep ${newRep} completed!`);
       }
-    } catch (err) {
+    } catch {
       setError('Failed to record rep. Please try again.');
     }
   };
@@ -175,7 +148,7 @@ export default function TerminalPage() {
       addOutput('Starting camera workout...');
       addOutput('A new window will open with the camera feed.');
       addOutput('Press "q" to quit the camera workout.');
-    } catch (err) {
+    } catch {
       setError('Failed to start camera workout. Please try again.');
     }
   };
