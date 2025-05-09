@@ -1,18 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { spawn } from 'child_process';
-import path from 'path';
+import { spawn } from &apos;child_process&apos;;
+import path from &apos;path&apos;;
 import { cookies } from 'next/headers';
-import fs from 'fs';
+import fs from &apos;fs&apos;;
 
 // Map of exercise names to their method names in the Python code
 const exerciseMethodMap: { [key: string]: string } = {
-  'bicep-curls': 'bicep_curls',
-  'bicep_curls': 'bicep_curls',
-  'push-ups': 'push_ups',
-  'push_ups': 'push_ups',
-  'squats': 'squats',
-  'mountain-climbers': 'mountain_climbers',
-  'mountain_climbers': 'mountain_climbers'
+  'bicep-curls': &apos;bicep_curls&apos;,
+  &apos;bicep_curls&apos;: &apos;bicep_curls&apos;,
+  'push-ups': &apos;push_ups&apos;,
+  &apos;push_ups&apos;: &apos;push_ups&apos;,
+  &apos;squats&apos;: &apos;squats&apos;,
+  'mountain-climbers': &apos;mountain_climbers&apos;,
+  &apos;mountain_climbers&apos;: &apos;mountain_climbers&apos;
 };
 
 export async function POST(request: NextRequest) {
@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
 
     // Get session token for authentication
     const cookieStore = cookies();
-    const sessionToken = await cookieStore.get('session')?.value;
+    const sessionToken = await cookieStore.get(&apos;session&apos;)?.value;
 
     if (!sessionToken) {
       return NextResponse.json(
@@ -48,10 +48,10 @@ export async function POST(request: NextRequest) {
 
     // Try multiple possible paths to find the Python script
     const possiblePaths = [
-      path.join(process.cwd(), 'AI_PersonTrainer backend', 'AI_PersonTrainer_april_10_4_21', 'run_trainer.py'),
-      path.join(process.cwd(), '..', 'AI_PersonTrainer backend', 'AI_PersonTrainer_april_10_4_21', 'run_trainer.py'),
-      path.join(process.cwd(), '..', '..', 'AI_PersonTrainer backend', 'AI_PersonTrainer_april_10_4_21', 'run_trainer.py'),
-      path.join(process.cwd(), '..', '..', '..', 'AI_PersonTrainer backend', 'AI_PersonTrainer_april_10_4_21', 'run_trainer.py')
+      path.join(process.cwd(), 'AI_PersonTrainer backend', &apos;AI_PersonTrainer_april_10_4_21&apos;, 'run_trainer.py'),
+      path.join(process.cwd(), '..', 'AI_PersonTrainer backend', &apos;AI_PersonTrainer_april_10_4_21&apos;, 'run_trainer.py'),
+      path.join(process.cwd(), '..', '..', 'AI_PersonTrainer backend', &apos;AI_PersonTrainer_april_10_4_21&apos;, 'run_trainer.py'),
+      path.join(process.cwd(), '..', '..', '..', 'AI_PersonTrainer backend', &apos;AI_PersonTrainer_april_10_4_21&apos;, 'run_trainer.py')
     ];
 
     let scriptPath = null;
@@ -88,28 +88,28 @@ export async function POST(request: NextRequest) {
       '--user_email', userEmail
     ];
 
-    console.log('Running command:', 'python', args.join(' '));
+    console.log('Running command:', &apos;python&apos;, args.join(' '));
 
     // Create a Promise to handle the process execution
     const processPromise = new Promise((resolve, reject) => {
-      const pythonProcess = spawn('python', args, {
+      const pythonProcess = spawn(&apos;python&apos;, args, {
         cwd: workingDir
       });
 
       let stdoutData = '';
       let stderrData = '';
 
-      pythonProcess.stdout.on('data', (data) => {
+      pythonProcess.stdout.on(&apos;data&apos;, (data) => {
         stdoutData += data.toString();
         console.log(`Python output: ${data}`);
       });
 
-      pythonProcess.stderr.on('data', (data) => {
+      pythonProcess.stderr.on(&apos;data&apos;, (data) => {
         stderrData += data.toString();
         console.error(`Python error: ${data}`);
       });
 
-      pythonProcess.on('close', (code) => {
+      pythonProcess.on(&apos;close&apos;, (code) => {
         console.log(`Python process exited with code ${code}`);
         if (code !== 0) {
           reject(new Error(`Process failed with code ${code}. Error: ${stderrData}`));
@@ -118,7 +118,7 @@ export async function POST(request: NextRequest) {
         }
       });
 
-      pythonProcess.on('error', (error) => {
+      pythonProcess.on(&apos;error&apos;, (error) => {
         console.error('Failed to start Python process:', error);
         reject(error);
       });
@@ -138,10 +138,10 @@ export async function POST(request: NextRequest) {
       scriptPath: scriptPath,
       workingDir: workingDir,
       exercise: exerciseMethod,
-      status: 'running'
+      status: &apos;running&apos;
     });
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error in terminal-camera route:', error);
     return NextResponse.json(
       { 

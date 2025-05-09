@@ -20,7 +20,7 @@ export function MainNav({ user }: { user?: User | null }) {
 
   // Enhanced check for user authentication - verify user exists and has expected properties
   const isLoggedIn = !isHomePage && !!user && 
-                    (typeof user === 'object') && 
+                    (typeof user === &apos;object&apos;) && 
                     ((user?.email && user.email.length > 0) || 
                      (user?.first_name && user.first_name.length > 0));
   

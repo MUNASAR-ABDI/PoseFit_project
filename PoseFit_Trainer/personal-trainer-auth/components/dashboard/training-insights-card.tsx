@@ -27,7 +27,7 @@ export function TrainingInsightsCard() {
         
         // Fetch workout history from API
         const response = await fetch('/api/workouts/history', {
-          method: 'GET',
+          method: &apos;GET&apos;,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -44,7 +44,7 @@ export function TrainingInsightsCard() {
         // In a real implementation, this would come from a dedicated API endpoint
         const feedbackItems: FormFeedback[] = []
         
-        workouts.forEach((workout: any) => {
+        workouts.forEach((workout: unknown) => {
           // Extract form feedback if available
           const formFeedback = workout.form_feedback || workout.feedback
           const exerciseName = workout.exercise_type || workout.exerciseType || workout.type || "Exercise"
@@ -57,17 +57,17 @@ export function TrainingInsightsCard() {
                   exercise: exerciseName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                   feedback,
                   date: workout.date || workout.timestamp || new Date().toISOString(),
-                  improvement: feedback.toLowerCase().includes('improve') || feedback.toLowerCase().includes('better'),
+                  improvement: feedback.toLowerCase().includes(&apos;improve&apos;) || feedback.toLowerCase().includes(&apos;better&apos;),
                   score: workout.form_score || undefined
                 })
               })
-            } else if (typeof formFeedback === 'string') {
+            } else if (typeof formFeedback === &apos;string&apos;) {
               // If feedback is a string, add it as a single item
               feedbackItems.push({
                 exercise: exerciseName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                 feedback: formFeedback,
                 date: workout.date || workout.timestamp || new Date().toISOString(),
-                improvement: formFeedback.toLowerCase().includes('improve') || formFeedback.toLowerCase().includes('better'),
+                improvement: formFeedback.toLowerCase().includes(&apos;improve&apos;) || formFeedback.toLowerCase().includes(&apos;better&apos;),
                 score: workout.form_score || undefined
               })
             }
@@ -79,7 +79,7 @@ export function TrainingInsightsCard() {
           // Sample feedback for common exercises
           const sampleFeedback = [
             {
-              exercise: 'Squats',
+              exercise: &apos;Squats&apos;,
               feedback: 'Keep your back straight and go deeper for better results',
               date: new Date().toISOString(),
               improvement: true,
@@ -93,7 +93,7 @@ export function TrainingInsightsCard() {
               score: 92
             },
             {
-              exercise: 'Plank',
+              exercise: &apos;Plank&apos;,
               feedback: 'Keep your hips aligned with shoulders',
               date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
               improvement: true
@@ -103,7 +103,7 @@ export function TrainingInsightsCard() {
           // Get the most recent workout types
           const recentExercises = workouts
             .slice(0, 3)
-            .map((workout: any) => {
+            .map((workout: unknown) => {
               const type = workout.exercise_type || workout.exerciseType || workout.type || "Exercise"
               return type.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())
             })
@@ -216,8 +216,8 @@ export function TrainingInsightsCard() {
             <div className="flex justify-between items-center text-xs text-muted-foreground pt-1">
               <span>
                 {new Date(insight.date).toLocaleDateString('en-US', { 
-                  month: 'short', 
-                  day: 'numeric'
+                  month: &apos;short&apos;, 
+                  day: &apos;numeric&apos;
                 })}
               </span>
               {insight.score && (

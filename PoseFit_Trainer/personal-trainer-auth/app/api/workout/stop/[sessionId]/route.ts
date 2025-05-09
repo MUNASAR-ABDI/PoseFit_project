@@ -10,17 +10,17 @@ export async function POST(
   try {
     // First, immediately trigger camera release to ensure it happens quickly
     await apiRequest('/release-all-cameras', {
-      method: 'POST'
+      method: &apos;POST&apos;
     }).catch(err => console.error('Error releasing cameras:', err));
 
     // Then get workout metrics (this doesn't block camera release)
     const metricsPromise = apiRequest('/workout-metrics/' + params.sessionId, {
-      method: 'GET'
+      method: &apos;GET&apos;
     }).catch(() => null);
     
     // Stop the workout in parallel
     const stopPromise = apiRequest('/stop-workout', {
-      method: 'POST',
+      method: &apos;POST&apos;,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
@@ -45,10 +45,10 @@ export async function POST(
         
         // Use workout metrics to create a workout history entry (don't await)
         fetch(`/api/workouts/record-workout`, {
-          method: 'POST',
+          method: &apos;POST&apos;,
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': authToken ? `Bearer ${authToken}` : ''
+            &apos;Authorization&apos;: authToken ? `Bearer ${authToken}` : ''
           },
           body: JSON.stringify({
             sessionId: params.sessionId,

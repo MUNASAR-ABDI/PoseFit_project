@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from &apos;react&apos;;
 
 export interface WorkoutResults {
   id: string;
@@ -23,7 +23,7 @@ export function useWorkoutHistory() {
   // Load workout history from localStorage
   useEffect(() => {
     try {
-      const storedHistory = localStorage.getItem('workoutHistory');
+      const storedHistory = localStorage.getItem(&apos;workoutHistory&apos;);
       if (storedHistory) {
         const parsedHistory = JSON.parse(storedHistory) as WorkoutResults[];
         setHistory(parsedHistory);
@@ -38,7 +38,7 @@ export function useWorkoutHistory() {
       }
 
       // Try to get the last workout results
-      const lastResults = localStorage.getItem('lastWorkoutResults');
+      const lastResults = localStorage.getItem(&apos;lastWorkoutResults&apos;);
       if (lastResults) {
         setLastWorkout(JSON.parse(lastResults));
       }
@@ -50,7 +50,7 @@ export function useWorkoutHistory() {
   }, []);
 
   // Save a new workout to history
-  const saveWorkout = (workout: Omit<WorkoutResults, 'id' | 'timestamp'>) => {
+  const saveWorkout = (workout: Omit<WorkoutResults, &apos;id&apos; | &apos;timestamp&apos;>) => {
     try {
       // Create a new workout entry with ID and timestamp
       const newWorkout: WorkoutResults = {
@@ -61,7 +61,7 @@ export function useWorkoutHistory() {
 
       // Update the last workout
       setLastWorkout(newWorkout);
-      localStorage.setItem('lastWorkoutResults', JSON.stringify(newWorkout));
+      localStorage.setItem(&apos;lastWorkoutResults&apos;, JSON.stringify(newWorkout));
 
       // Update history
       setHistory(prevHistory => {
@@ -72,7 +72,7 @@ export function useWorkoutHistory() {
         const limitedHistory = updatedHistory.slice(0, MAX_HISTORY_SIZE);
         
         // Save to localStorage
-        localStorage.setItem('workoutHistory', JSON.stringify(limitedHistory));
+        localStorage.setItem(&apos;workoutHistory&apos;, JSON.stringify(limitedHistory));
         
         return limitedHistory;
       });
@@ -88,8 +88,8 @@ export function useWorkoutHistory() {
   const clearHistory = () => {
     setHistory([]);
     setLastWorkout(null);
-    localStorage.removeItem('workoutHistory');
-    localStorage.removeItem('lastWorkoutResults');
+    localStorage.removeItem(&apos;workoutHistory&apos;);
+    localStorage.removeItem(&apos;lastWorkoutResults&apos;);
   };
 
   return {

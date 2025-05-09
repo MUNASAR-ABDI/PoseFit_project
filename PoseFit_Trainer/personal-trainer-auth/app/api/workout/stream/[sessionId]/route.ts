@@ -10,7 +10,7 @@ export async function GET(
     const token = await getAuthToken();
     
     if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: &apos;Unauthorized&apos; }, { status: 401 });
     }
 
     // Need to handle this one differently as we're returning a streaming response
@@ -18,7 +18,7 @@ export async function GET(
       `${BACKEND_URL}/workout-stream/${params.sessionId}`,
       {
         headers: {
-          'Authorization': `Bearer ${token}`
+          &apos;Authorization&apos;: `Bearer ${token}`
         }
       }
     );

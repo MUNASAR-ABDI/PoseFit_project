@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { 
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
   LineChart, Line, PieChart, Pie, Cell
-} from 'recharts'
+} from &apos;recharts&apos;
 import { 
   Award, Calendar, Clock, Dumbbell, Flame, 
   TrendingUp, Activity, Target, ChevronRight
@@ -57,7 +57,7 @@ interface UserStats {
 }
 
 // Utility functions to process workout data
-const processWorkoutHistory = (workoutHistory: any[]) => {
+const processWorkoutHistory = (workoutHistory: unknown[]) => {
   if (!workoutHistory || !Array.isArray(workoutHistory)) {
     return [];
   }
@@ -178,7 +178,7 @@ const calculateExerciseDistribution = (workouts: WorkoutSummary[]) => {
 
 const calculateWeeklyActivity = (workouts: WorkoutSummary[]) => {
   // Initialize empty activity data for each day
-  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const days = [&apos;Mon&apos;, &apos;Tue&apos;, &apos;Wed&apos;, &apos;Thu&apos;, &apos;Fri&apos;, &apos;Sat&apos;, &apos;Sun&apos;];
   const weeklyActivity = days.map(day => ({ day, minutes: 0 }));
   
   // Get today's day index (0 = Sunday in JS)
@@ -228,7 +228,7 @@ export default function DashboardPage() {
         
         // Fetch workout history from API
         const response = await fetch('/api/workouts/history', {
-          method: 'GET',
+          method: &apos;GET&apos;,
           headers: {
             'Content-Type': 'application/json',
           },
@@ -328,9 +328,9 @@ export default function DashboardPage() {
                 <XAxis dataKey="day" />
                 <YAxis name="Minutes" />
                 <Tooltip 
-                  contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
-                  labelStyle={{ color: 'white' }}
-                  formatter={(value) => [`${value} mins`, 'Duration']}
+                  contentStyle={{ backgroundColor: '#1f2937', border: &apos;none&apos;, borderRadius: &apos;8px&apos; }}
+                  labelStyle={{ color: &apos;white&apos; }}
+                  formatter={(value) => [`${value} mins`, &apos;Duration&apos;]}
                 />
                 <Bar dataKey="minutes" fill="#6366f1" radius={[4, 4, 0, 0]} />
               </BarChart>
@@ -369,9 +369,9 @@ export default function DashboardPage() {
                     ))}
                   </Pie>
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#1f2937', border: 'none', borderRadius: '8px' }}
-                    labelStyle={{ color: 'white' }}
-                    formatter={(value) => [`${value} workouts`, 'Count']}
+                    contentStyle={{ backgroundColor: '#1f2937', border: &apos;none&apos;, borderRadius: &apos;8px&apos; }}
+                    labelStyle={{ color: &apos;white&apos; }}
+                    formatter={(value) => [`${value} workouts`, &apos;Count&apos;]}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -408,9 +408,9 @@ export default function DashboardPage() {
                     <span className="font-medium">{workout.type}</span>
                     <span className="text-sm text-gray-400">
                       {new Date(workout.date).toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'short', 
-                        day: 'numeric',
+                        year: &apos;numeric&apos;, 
+                        month: &apos;short&apos;, 
+                        day: &apos;numeric&apos;,
                         hour: '2-digit',
                         minute: '2-digit'
                       })}

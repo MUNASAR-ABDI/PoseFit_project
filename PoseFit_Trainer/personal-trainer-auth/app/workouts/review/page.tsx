@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from &apos;react&apos;
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { ArrowLeft, Flame, Timer } from 'lucide-react'
@@ -22,9 +22,9 @@ export default function ReviewPage() {
   })
 
   useEffect(() => {
-    const calories = Number(searchParams.get('calories')) || 0
-    const duration = Number(searchParams.get('duration')) || 0
-    const videoPath = searchParams.get('video') || ''
+    const calories = Number(searchParams.get(&apos;calories&apos;)) || 0
+    const duration = Number(searchParams.get(&apos;duration&apos;)) || 0
+    const videoPath = searchParams.get(&apos;video&apos;) || ''
 
     setStats({
       calories,
@@ -36,7 +36,7 @@ export default function ReviewPage() {
   const formatDuration = (seconds: number) => {
     const minutes = Math.floor(seconds / 60)
     const remainingSeconds = seconds % 60
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+    return `${minutes}:${remainingSeconds.toString().padStart(2, &apos;0&apos;)}`
   }
 
   const handleBack = () => {

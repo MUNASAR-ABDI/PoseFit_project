@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState } from &apos;react&apos;
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -30,7 +30,7 @@ export default function ForgotPasswordPage() {
     
     try {
       const response = await fetch('http://localhost:8002/request-password-reset', {
-        method: 'POST',
+        method: &apos;POST&apos;,
         headers: {
           'Content-Type': 'application/json',
         },

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     };
     
     const data = await apiRequest<WorkoutResponse>('/start-workout', {
-      method: 'POST',
+      method: &apos;POST&apos;,
       headers: {
         'Content-Type': 'application/json'
       },

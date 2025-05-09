@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from &apos;react&apos;;
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Label } from "@/components/ui/label"
@@ -16,7 +16,7 @@ const exerciseMedia: Record<string, string> = {
   'warm-up': '/videos/Jumping Jack ( Warm up ).gif',
   'mountain-climbers': '/videos/Mountain Climber.mp4',
   'push-ups': '/videos/Push up.mp4',
-  'squats': '/videos/Squat.mp4',
+  &apos;squats&apos;: '/videos/Squat.mp4',
 };
 
 export default function ConfigureWorkout() {
@@ -28,7 +28,7 @@ export default function ConfigureWorkout() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
 
-  const exerciseId = searchParams.get('exercise') || "bicep-curls"
+  const exerciseId = searchParams.get(&apos;exercise&apos;) || "bicep-curls"
 
   useEffect(() => {
     // Get the selected exercise from sessionStorage

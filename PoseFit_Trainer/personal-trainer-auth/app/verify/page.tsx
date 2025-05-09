@@ -30,7 +30,7 @@ export default function VerifyPage() {
     async function checkConnection() {
       try {
         const response = await fetch('/api/backend/profile', {
-          method: 'GET',
+          method: &apos;GET&apos;,
           headers: { 'Content-Type': 'application/json' },
         });
         
@@ -66,19 +66,19 @@ export default function VerifyPage() {
         setConnectionError(false)
         
         // Set auth state in localStorage
-        localStorage.setItem('auth', 'true')
+        localStorage.setItem(&apos;auth&apos;, &apos;true&apos;)
         
         // Store email for reference
-        localStorage.setItem('user_email', email)
+        localStorage.setItem(&apos;user_email&apos;, email)
         
         // If we got a token back, set it in localStorage and session cookie
         if (result.accessToken) {
-          localStorage.setItem('access_token', result.accessToken)
+          localStorage.setItem(&apos;access_token&apos;, result.accessToken)
           
           try {
             // Make a request to our API route to set the cookie
             const response = await fetch('/api/auth/set-session', {
-              method: 'POST',
+              method: &apos;POST&apos;,
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ 
                 token: result.accessToken,
@@ -174,8 +174,8 @@ export default function VerifyPage() {
 
   // Allow direct access to dashboard for development when backend is down
   function handleForceDashboard() {
-    localStorage.setItem('auth', 'true');
-    localStorage.setItem('access_token', 'development_token');
+    localStorage.setItem(&apos;auth&apos;, &apos;true&apos;);
+    localStorage.setItem(&apos;access_token&apos;, &apos;development_token&apos;);
     document.cookie = `auth-status=authenticated; path=/; max-age=${60 * 60 * 24 * 7}`;
     document.cookie = `user-authenticated=true; path=/; max-age=${60 * 60 * 24 * 7}`;
     
@@ -216,7 +216,7 @@ export default function VerifyPage() {
               <ServerOff className="h-4 w-4 text-amber-600" />
               <AlertDescription className="text-amber-800">
                 Cannot connect to the backend server. Please ensure it's running at http://localhost:8002.
-                {process.env.NODE_ENV === 'development' && (
+                {process.env.NODE_ENV === &apos;development&apos; && (
                   <Button 
                     variant="outline"
                     size="sm"
@@ -250,7 +250,7 @@ export default function VerifyPage() {
               <Button 
                 className="w-full" 
                 onClick={handleVerify} 
-                disabled={isVerifying || (connectionError && process.env.NODE_ENV !== 'development')}
+                disabled={isVerifying || (connectionError && process.env.NODE_ENV !== &apos;development&apos;)}
               >
                 {isVerifying ? "Verifying..." : "Verify Email"}
               </Button>
@@ -258,7 +258,7 @@ export default function VerifyPage() {
                 <Button 
                   variant="link" 
                   onClick={handleResend} 
-                  disabled={isResending || (connectionError && process.env.NODE_ENV !== 'development')}
+                  disabled={isResending || (connectionError && process.env.NODE_ENV !== &apos;development&apos;)}
                 >
                   {isResending ? "Sending..." : "Resend verification code"}
                 </Button>

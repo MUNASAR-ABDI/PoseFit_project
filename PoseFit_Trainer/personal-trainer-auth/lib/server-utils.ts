@@ -4,7 +4,7 @@ import { BACKEND_URL } from './api-utils';
 // Utility for handling API authorization
 export async function getAuthToken() {
   const cookieStore = await cookies();
-  return cookieStore.get('session')?.value;
+  return cookieStore.get(&apos;session&apos;)?.value;
 }
 
 // Generic API request handler with auth
@@ -17,7 +17,7 @@ export async function apiRequest<T>(url: string, options: RequestInit = {}): Pro
   
   const headers = {
     ...options.headers,
-    'Authorization': `Bearer ${token}`
+    &apos;Authorization&apos;: `Bearer ${token}`
   };
   
   const response = await fetch(`${BACKEND_URL}${url}`, {

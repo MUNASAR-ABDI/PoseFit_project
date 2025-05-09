@@ -5,10 +5,10 @@ export async function GET(request: NextRequest) {
   try {
     // Get session token from cookie or Authorization header
     const cookieStore = cookies()
-    const sessionCookie = cookieStore.get('session')
+    const sessionCookie = cookieStore.get(&apos;session&apos;)
     
     // Get from Authorization header as fallback
-    const authHeader = request.headers.get('Authorization')
+    const authHeader = request.headers.get(&apos;Authorization&apos;)
     const token = sessionCookie?.value || 
       (authHeader?.startsWith('Bearer ') ? authHeader.substring(7) : null)
     
@@ -26,10 +26,10 @@ export async function GET(request: NextRequest) {
       console.log(`check-session: Validating token against ${apiUrl}/profile`);
       
       const response = await fetch(`${apiUrl}/profile`, {
-        method: 'GET',
+        method: &apos;GET&apos;,
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          &apos;Authorization&apos;: `Bearer ${token}`
         },
         // Disable cache to ensure fresh responses
         cache: 'no-store'

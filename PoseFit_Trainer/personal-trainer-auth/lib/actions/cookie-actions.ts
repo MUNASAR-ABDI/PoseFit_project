@@ -7,7 +7,7 @@ import { cookies } from 'next/headers'
  */
 export async function deleteSessionCookie() {
   const cookieStore = cookies()
-  cookieStore.delete('session')
+  cookieStore.delete(&apos;session&apos;)
   return { success: true }
 }
 
@@ -16,9 +16,9 @@ export async function deleteSessionCookie() {
  */
 export async function setSessionCookie(value: string, maxAge: number = 60 * 60 * 24 * 7) {
   const cookieStore = cookies()
-  cookieStore.set('session', value, {
+  cookieStore.set(&apos;session&apos;, value, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === &apos;production&apos;,
     maxAge,
     path: '/',
   })
@@ -32,7 +32,7 @@ export async function setNextUrlCookie(value: string) {
   const cookieStore = cookies()
   cookieStore.set('next-url', value, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
+    secure: process.env.NODE_ENV === &apos;production&apos;,
     path: '/',
   })
   return { success: true }

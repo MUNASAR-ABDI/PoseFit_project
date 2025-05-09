@@ -8,7 +8,7 @@ export async function POST(
 ) {
   try {
     const response = await apiRequest('/save-and-email-video', {
-      method: 'POST',
+      method: &apos;POST&apos;,
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

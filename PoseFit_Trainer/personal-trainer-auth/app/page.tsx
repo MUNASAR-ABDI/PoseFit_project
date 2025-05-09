@@ -14,7 +14,7 @@ export default function Home() {
   useEffect(() => {
     // Use the centralized logout utility function for cookie and storage cleanup
     // but don't redirect since we're already on the home page
-    if (typeof window !== 'undefined') {
+    if (typeof window !== &apos;undefined&apos;) {
       // Clear any existing session cookies client-side
       document.cookie = "session=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       document.cookie = "user-authenticated=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -24,11 +24,11 @@ export default function Home() {
       
       // Also clear session storage
       sessionStorage.clear();
-      localStorage.removeItem('auth');
-      localStorage.removeItem('token');
-      localStorage.removeItem('user');
-      localStorage.removeItem('workoutHistory');
-      localStorage.removeItem('lastWorkoutResults');
+      localStorage.removeItem(&apos;auth&apos;);
+      localStorage.removeItem(&apos;token&apos;);
+      localStorage.removeItem(&apos;user&apos;);
+      localStorage.removeItem(&apos;workoutHistory&apos;);
+      localStorage.removeItem(&apos;lastWorkoutResults&apos;);
     }
   }, []);
 

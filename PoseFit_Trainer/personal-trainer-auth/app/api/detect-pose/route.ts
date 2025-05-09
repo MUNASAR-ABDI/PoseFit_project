@@ -5,8 +5,8 @@ const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8002';
 export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
-    const frame = formData.get('frame');
-    const exercise = formData.get('exercise');
+    const frame = formData.get(&apos;frame&apos;);
+    const exercise = formData.get(&apos;exercise&apos;);
 
     if (!frame || !(frame instanceof Blob)) {
       return NextResponse.json(
@@ -17,11 +17,11 @@ export async function POST(req: NextRequest) {
 
     // Forward the frame to the Python backend for pose detection
     const backendFormData = new FormData();
-    backendFormData.append('frame', frame);
-    backendFormData.append('exercise', exercise as string);
+    backendFormData.append(&apos;frame&apos;, frame);
+    backendFormData.append(&apos;exercise&apos;, exercise as string);
 
     const response = await fetch(`${BACKEND_URL}/detect-pose`, {
-      method: 'POST',
+      method: &apos;POST&apos;,
       body: backendFormData,
     });
 

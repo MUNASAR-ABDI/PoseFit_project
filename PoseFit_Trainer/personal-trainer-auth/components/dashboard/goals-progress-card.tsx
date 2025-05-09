@@ -76,7 +76,7 @@ export function GoalsProgressCard() {
         startOfWeek.setDate(now.getDate() - now.getDay()) // Sunday
         startOfWeek.setHours(0, 0, 0, 0)
         
-        const weeklyProgress = workouts.filter((workout: any) => 
+        const weeklyProgress = workouts.filter((workout: unknown) => 
           new Date(workout.date || workout.timestamp) >= startOfWeek
         ).length
         

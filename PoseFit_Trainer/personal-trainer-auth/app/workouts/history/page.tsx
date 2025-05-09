@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from &apos;react&apos;;
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -38,7 +38,7 @@ export default function WorkoutHistoryPage() {
   const [workouts, setWorkouts] = useState<WorkoutSession[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [filter, setFilter] = useState('all');
+  const [filter, setFilter] = useState(&apos;all&apos;);
 
   useEffect(() => {
     async function fetchWorkoutHistory() {
@@ -68,9 +68,9 @@ export default function WorkoutHistoryPage() {
 
   // Filter workouts based on selected filter
   const filteredWorkouts = workouts.filter(workout => {
-    if (filter === 'all') return true;
-    if (filter === 'completed') return workout.completed;
-    if (filter === 'incomplete') return !workout.completed;
+    if (filter === &apos;all&apos;) return true;
+    if (filter === &apos;completed&apos;) return workout.completed;
+    if (filter === &apos;incomplete&apos;) return !workout.completed;
     
     // Filter by exercise type
     return workout.exercise.toLowerCase().includes(filter.toLowerCase());
@@ -88,9 +88,9 @@ export default function WorkoutHistoryPage() {
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+      year: &apos;numeric&apos;, 
+      month: &apos;short&apos;, 
+      day: &apos;numeric&apos; 
     });
   };
 
@@ -184,8 +184,8 @@ export default function WorkoutHistoryPage() {
         <CardHeader>
           <CardTitle>Workout Sessions</CardTitle>
           <CardDescription>
-            {filteredWorkouts.length} {filter !== 'all' ? 'filtered ' : ''}
-            workout{filteredWorkouts.length !== 1 ? 's' : ''}
+            {filteredWorkouts.length} {filter !== &apos;all&apos; ? 'filtered ' : ''}
+            workout{filteredWorkouts.length !== 1 ? &apos;s&apos; : ''}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -241,12 +241,12 @@ export default function WorkoutHistoryPage() {
               <Trophy className="h-12 w-12 text-muted-foreground mb-4" />
               <h3 className="text-lg font-medium mb-2">No workouts found</h3>
               <p className="text-sm text-muted-foreground max-w-md">
-                {filter !== 'all'
+                {filter !== &apos;all&apos;
                   ? "Try changing your filter to see more workouts."
                   : "You haven't recorded any workouts yet. Start your fitness journey today!"}
               </p>
-              {filter !== 'all' && (
-                <Button variant="outline" className="mt-4" onClick={() => setFilter('all')}>
+              {filter !== &apos;all&apos; && (
+                <Button variant="outline" className="mt-4" onClick={() => setFilter(&apos;all&apos;)}>
                   Show all workouts
                 </Button>
               )}

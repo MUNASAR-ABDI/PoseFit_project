@@ -2,21 +2,21 @@ import { NextResponse } from 'next/server';
 
 // Simulated workout history data (fallback only)
 const sampleWorkoutData = [
-  { id: '1', date: '2023-10-01', exercise: 'Bicep Curls', duration: 30, sets: 3, reps: 12, calories: 150 },
-  { id: '2', date: '2023-10-03', exercise: 'Push Ups', duration: 25, sets: 3, reps: 15, calories: 120 },
-  { id: '3', date: '2023-10-05', exercise: 'Squats', duration: 35, sets: 4, reps: 12, calories: 200 },
-  { id: '4', date: '2023-10-08', exercise: 'Mountain Climbers', duration: 20, sets: 3, reps: 20, calories: 180 },
-  { id: '5', date: '2023-10-10', exercise: 'Bicep Curls', duration: 32, sets: 3, reps: 12, calories: 155 },
-  { id: '6', date: '2023-11-02', exercise: 'Push Ups', duration: 28, sets: 3, reps: 15, calories: 130 },
-  { id: '7', date: '2023-11-05', exercise: 'Squats', duration: 40, sets: 4, reps: 12, calories: 220 },
-  { id: '8', date: '2023-11-09', exercise: 'Mountain Climbers', duration: 22, sets: 3, reps: 20, calories: 190 },
-  { id: '9', date: '2023-11-12', exercise: 'Bicep Curls', duration: 33, sets: 3, reps: 12, calories: 160 },
-  { id: '10', date: '2023-12-01', exercise: 'Push Ups', duration: 30, sets: 3, reps: 15, calories: 140 },
-  { id: '11', date: '2023-12-05', exercise: 'Squats', duration: 42, sets: 4, reps: 12, calories: 225 },
-  { id: '12', date: '2023-12-10', exercise: 'Mountain Climbers', duration: 25, sets: 3, reps: 20, calories: 200 },
-  { id: '13', date: '2024-01-03', exercise: 'Bicep Curls', duration: 35, sets: 3, reps: 12, calories: 165 },
-  { id: '14', date: '2024-01-07', exercise: 'Push Ups', duration: 32, sets: 3, reps: 15, calories: 145 },
-  { id: '15', date: '2024-01-12', exercise: 'Squats', duration: 45, sets: 4, reps: 12, calories: 230 },
+  { id: &apos;1&apos;, date: '2023-10-01', exercise: 'Bicep Curls', duration: 30, sets: 3, reps: 12, calories: 150 },
+  { id: &apos;2&apos;, date: '2023-10-03', exercise: 'Push Ups', duration: 25, sets: 3, reps: 15, calories: 120 },
+  { id: &apos;3&apos;, date: '2023-10-05', exercise: &apos;Squats&apos;, duration: 35, sets: 4, reps: 12, calories: 200 },
+  { id: &apos;4&apos;, date: '2023-10-08', exercise: 'Mountain Climbers', duration: 20, sets: 3, reps: 20, calories: 180 },
+  { id: &apos;5&apos;, date: '2023-10-10', exercise: 'Bicep Curls', duration: 32, sets: 3, reps: 12, calories: 155 },
+  { id: &apos;6&apos;, date: '2023-11-02', exercise: 'Push Ups', duration: 28, sets: 3, reps: 15, calories: 130 },
+  { id: &apos;7&apos;, date: '2023-11-05', exercise: &apos;Squats&apos;, duration: 40, sets: 4, reps: 12, calories: 220 },
+  { id: &apos;8&apos;, date: '2023-11-09', exercise: 'Mountain Climbers', duration: 22, sets: 3, reps: 20, calories: 190 },
+  { id: &apos;9&apos;, date: '2023-11-12', exercise: 'Bicep Curls', duration: 33, sets: 3, reps: 12, calories: 160 },
+  { id: &apos;10&apos;, date: '2023-12-01', exercise: 'Push Ups', duration: 30, sets: 3, reps: 15, calories: 140 },
+  { id: &apos;11&apos;, date: '2023-12-05', exercise: &apos;Squats&apos;, duration: 42, sets: 4, reps: 12, calories: 225 },
+  { id: &apos;12&apos;, date: '2023-12-10', exercise: 'Mountain Climbers', duration: 25, sets: 3, reps: 20, calories: 200 },
+  { id: &apos;13&apos;, date: '2024-01-03', exercise: 'Bicep Curls', duration: 35, sets: 3, reps: 12, calories: 165 },
+  { id: &apos;14&apos;, date: '2024-01-07', exercise: 'Push Ups', duration: 32, sets: 3, reps: 15, calories: 145 },
+  { id: &apos;15&apos;, date: '2024-01-12', exercise: &apos;Squats&apos;, duration: 45, sets: 4, reps: 12, calories: 230 },
 ];
 
 export async function GET() {
@@ -28,11 +28,11 @@ export async function GET() {
     try {
       // Make the request to the workout metrics endpoint
       const response = await fetch(`${backendUrl}/workout-metrics`, {
-        method: 'GET',
+        method: &apos;GET&apos;,
         headers: {
           'Content-Type': 'application/json',
           // Add authorization if needed
-          // 'Authorization': `Bearer ${token}`
+          // &apos;Authorization&apos;: `Bearer ${token}`
         },
       });
       
@@ -47,7 +47,7 @@ export async function GET() {
         // Try alternate endpoint if the first one fails
         try {
           const alternateResponse = await fetch(`${backendUrl}/workout-history`, {
-            method: 'GET',
+            method: &apos;GET&apos;,
             headers: {
               'Content-Type': 'application/json',
             },

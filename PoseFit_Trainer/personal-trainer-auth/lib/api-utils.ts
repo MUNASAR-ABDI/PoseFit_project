@@ -4,15 +4,15 @@ export const BACKEND_URL = 'http://localhost:8002';
 
 // Exercise name mapping between frontend and backend
 export const EXERCISE_MAPPING = {
-  'bicep-curls': 'bicep_curls',
-  'push-ups': 'push_ups',
-  'squats': 'squats',
-  'mountain-climbers': 'mountain_climbers',
+  'bicep-curls': &apos;bicep_curls&apos;,
+  'push-ups': &apos;push_ups&apos;,
+  &apos;squats&apos;: &apos;squats&apos;,
+  'mountain-climbers': &apos;mountain_climbers&apos;,
 };
 
 // Standardize exercise name for backend API
 export function normalizeExerciseName(exerciseName: string): string {
-  return EXERCISE_MAPPING[exerciseName as keyof typeof EXERCISE_MAPPING] || exerciseName.replace(/-/g, '_');
+  return EXERCISE_MAPPING[exerciseName as keyof typeof EXERCISE_MAPPING] || exerciseName.replace(/-/g, &apos;_&apos;);
 }
 
 // Formats exercise name for display
