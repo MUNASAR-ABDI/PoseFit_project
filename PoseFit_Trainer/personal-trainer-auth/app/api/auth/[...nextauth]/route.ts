@@ -2,14 +2,14 @@ import { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth/next';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { PrismaClient } from '@prisma/client';
-import bcrypt from &apos;bcrypt&apos;;
+import bcrypt from 'bcrypt';
 
 const prisma = new PrismaClient();
 
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: &apos;Credentials&apos;,
+      name: 'Credentials',
       credentials: {
         email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" }
@@ -42,7 +42,7 @@ export const authOptions: NextAuthOptions = {
     })
   ],
   session: {
-    strategy: &apos;jwt&apos;
+    strategy: 'jwt'
   },
   pages: {
     signIn: '/login',

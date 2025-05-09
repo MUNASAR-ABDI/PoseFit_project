@@ -10,7 +10,7 @@ const API_BASE_URL = "http://localhost:8002"
 async function checkApiAvailability(): Promise<boolean> {
   try {
     const response = await fetch(`${API_BASE_URL}/docs`, {
-      method: &apos;HEAD&apos;,
+      method: 'HEAD',
     });
     return response.ok;
   } catch (error) {
@@ -69,10 +69,10 @@ export async function login(data: LoginData): Promise<AuthResult> {
     }
 
     const response = await fetch(`${API_BASE_URL}/token`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/x-www-form-urlencoded',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: new URLSearchParams({
         username: data.email,
@@ -135,10 +135,10 @@ export async function register(data: RegisterData): Promise<AuthResult> {
     const cleanEmail = data.email.trim().replace(/^['"]+|['"]+$/g, "");
 
     const response = await fetch(`${API_BASE_URL}/register`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         email: cleanEmail,
@@ -176,10 +176,10 @@ export async function verifyEmail(email: string, code: string): Promise<AuthResu
   try {
     console.log('Verifying email:', email, 'with code:', code);
     const response = await fetch(`${API_BASE_URL}/verify-email`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         email,
@@ -225,10 +225,10 @@ export async function resendVerification(email: string): Promise<AuthResult> {
     const cleanEmail = email.trim().replace(/^['"]+|['"]+$/g, "");
 
     const response = await fetch(`${API_BASE_URL}/resend-verification`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({ email: cleanEmail }),
     });
@@ -263,9 +263,9 @@ export async function logout() {
       // Try to call the backend logout endpoint
       try {
         const response = await fetch(`${API_BASE_URL}/logout`, {
-          method: &apos;POST&apos;,
+          method: 'POST',
           headers: {
-            &apos;Authorization&apos;: `Bearer ${sessionCookie.value}`,
+            'Authorization': `Bearer ${sessionCookie.value}`,
             'Content-Type': 'application/json'
           }
         });
@@ -315,10 +315,10 @@ export async function getCurrentUser() {
 
     // Make API call to validate the session
     const response = await fetch(`${API_BASE_URL}/profile`, {
-      method: &apos;GET&apos;,
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        &apos;Authorization&apos;: `Bearer ${session.value}`
+        'Authorization': `Bearer ${session.value}`
       },
       cache: 'no-store'
     });
@@ -339,7 +339,7 @@ export async function getCurrentUser() {
     return data || null;
   } catch (error) {
     // Only log unexpected errors, not 401s
-    if (error instanceof Error && !error.message.includes(&apos;401&apos;)) {
+    if (error instanceof Error && !error.message.includes('401')) {
       // Log to a server-side logging service instead of console
     }
     

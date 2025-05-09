@@ -13,9 +13,9 @@ export async function GET() {
     if (sessionCookie?.value) {
       try {
         await fetch(`${API_BASE_URL}/logout`, {
-          method: &apos;POST&apos;,
+          method: 'POST',
           headers: {
-            &apos;Authorization&apos;: `Bearer ${sessionCookie.value}`,
+            'Authorization': `Bearer ${sessionCookie.value}`,
             'Content-Type': 'application/json'
           }
         });
@@ -51,10 +51,10 @@ export async function GET() {
         <script>
           // Clear localStorage and sessionStorage
           try {
-            localStorage.removeItem(&apos;auth&apos;);
-            localStorage.removeItem(&apos;token&apos;);
-            localStorage.removeItem(&apos;access_token&apos;);
-            localStorage.removeItem(&apos;user&apos;);
+            localStorage.removeItem('auth');
+            localStorage.removeItem('token');
+            localStorage.removeItem('access_token');
+            localStorage.removeItem('user');
             sessionStorage.clear();
             localStorage.clear();
             

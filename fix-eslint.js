@@ -13,6 +13,19 @@ console.log(`Found ${files.length} TypeScript files to process`);
 let fixedFiles = 0;
 let fixedIssues = 0;
 
+// First, restore any files with &apos; entities that are causing build errors
+const apostrophesRegex = /&apos;/g;
+files.forEach(filePath => {
+  let content = fs.readFileSync(filePath, 'utf8');
+  if (apostrophesRegex.test(content)) {
+    console.log(`Fixing apostrophes in ${filePath}`);
+    content = content.replace(apostrophesRegex, "'");
+    fs.writeFileSync(filePath, content, 'utf8');
+    fixedFiles++;
+  }
+});
+
+// Now apply the other fixes
 files.forEach(filePath => {
   let content = fs.readFileSync(filePath, 'utf8');
   let originalContent = content;
@@ -63,12 +76,15 @@ files.forEach(filePath => {
     fixedIssues += (content.match(anyRegex) || []).length;
   }
   
-  // 3. Fix unescaped entities
-  const entityRegex = /'(\w+)'/g;
-  if (entityRegex.test(content)) {
-    content = content.replace(entityRegex, '&apos;$1&apos;');
-    modified = true;
-    fixedIssues += (content.match(entityRegex) || []).length;
+  // 3. Fix unescaped entities ONLY in JSX (not in TS)
+  // Skip this since it's causing syntax errors
+  // Only apply to .tsx files and only within JSX tags
+  if (filePath.endsWith('.tsx')) {
+    const jsxEntityRegex = /(<[^>]*>.*?)['']([^<]*?)['']([^>]*<\/)/g;
+    if (jsxEntityRegex.test(content)) {
+      content = content.replace(jsxEntityRegex, '$1&apos;$2&apos;$3');
+      modified = true;
+    }
   }
   
   // 4. Add useCallback hooks for functions in useEffect dependencies

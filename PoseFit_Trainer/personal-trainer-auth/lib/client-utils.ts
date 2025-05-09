@@ -8,7 +8,7 @@
  * Check if the user is authenticated by checking cookies, localStorage, and other indicators
  */
 export function isAuthenticated(): boolean {
-  if (typeof window === &apos;undefined&apos;) {
+  if (typeof window === 'undefined') {
     return false;
   }
 
@@ -21,10 +21,10 @@ export function isAuthenticated(): boolean {
     );
     
     // Check localStorage
-    const hasLocalStorageAuth = localStorage.getItem(&apos;auth&apos;) === &apos;true&apos;;
+    const hasLocalStorageAuth = localStorage.getItem('auth') === 'true';
     
     // Check for access token
-    const hasAccessToken = !!localStorage.getItem(&apos;access_token&apos;);
+    const hasAccessToken = !!localStorage.getItem('access_token');
     
     return hasAuthCookie || hasLocalStorageAuth || hasAccessToken;
   } catch (e) {
@@ -37,20 +37,20 @@ export function isAuthenticated(): boolean {
  * Set authentication state in client storage
  */
 export function setAuthenticated(value: boolean = true): void {
-  if (typeof window === &apos;undefined&apos;) {
+  if (typeof window === 'undefined') {
     return;
   }
   
   try {
     if (value) {
-      localStorage.setItem(&apos;auth&apos;, &apos;true&apos;);
+      localStorage.setItem('auth', 'true');
       
       // Also set a client-accessible cookie as a backup
       document.cookie = `auth-status=authenticated; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
       document.cookie = `user-authenticated=true; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
     } else {
-      localStorage.removeItem(&apos;auth&apos;);
-      localStorage.removeItem(&apos;access_token&apos;);
+      localStorage.removeItem('auth');
+      localStorage.removeItem('access_token');
       
       // Clear auth cookies
       document.cookie = 'auth-status=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
@@ -66,7 +66,7 @@ export function setAuthenticated(value: boolean = true): void {
  * Enhanced to ensure consistent behavior across the application
  */
 export function logout(): void {
-  if (typeof window === &apos;undefined&apos;) {
+  if (typeof window === 'undefined') {
     return;
   }
   
@@ -81,12 +81,12 @@ export function logout(): void {
     
     // Clear localStorage and sessionStorage
     try {
-      localStorage.removeItem(&apos;auth&apos;);
-      localStorage.removeItem(&apos;token&apos;);
-      localStorage.removeItem(&apos;access_token&apos;);
-      localStorage.removeItem(&apos;user&apos;);
-      localStorage.removeItem(&apos;workoutHistory&apos;);
-      localStorage.removeItem(&apos;lastWorkoutResults&apos;);
+      localStorage.removeItem('auth');
+      localStorage.removeItem('token');
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('workoutHistory');
+      localStorage.removeItem('lastWorkoutResults');
       sessionStorage.clear();
       localStorage.clear();
     } catch (e) {

@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useEffect, useState } from &apos;react&apos;;
+import { Suspense, useEffect, useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
@@ -35,11 +35,11 @@ function ProgressCharts() {
         setError('Failed to load workout data. Please try again later.');
         // Use sample data in case of error
         setWorkoutHistory([
-          { id: &apos;1&apos;, date: '2023-10-01', exercise: 'Bicep Curls', duration: 30, sets: 3, reps: 12, calories: 150 },
-          { id: &apos;2&apos;, date: '2023-10-03', exercise: 'Push Ups', duration: 25, sets: 3, reps: 15, calories: 120 },
-          { id: &apos;3&apos;, date: '2023-10-05', exercise: &apos;Squats&apos;, duration: 35, sets: 4, reps: 12, calories: 200 },
-          { id: &apos;4&apos;, date: '2023-10-08', exercise: 'Mountain Climbers', duration: 20, sets: 3, reps: 20, calories: 180 },
-          { id: &apos;5&apos;, date: '2023-10-10', exercise: 'Bicep Curls', duration: 32, sets: 3, reps: 12, calories: 155 },
+          { id: '1', date: '2023-10-01', exercise: 'Bicep Curls', duration: 30, sets: 3, reps: 12, calories: 150 },
+          { id: '2', date: '2023-10-03', exercise: 'Push Ups', duration: 25, sets: 3, reps: 15, calories: 120 },
+          { id: '3', date: '2023-10-05', exercise: 'Squats', duration: 35, sets: 4, reps: 12, calories: 200 },
+          { id: '4', date: '2023-10-08', exercise: 'Mountain Climbers', duration: 20, sets: 3, reps: 20, calories: 180 },
+          { id: '5', date: '2023-10-10', exercise: 'Bicep Curls', duration: 32, sets: 3, reps: 12, calories: 155 },
         ]);
       } finally {
         setLoading(false);
@@ -52,7 +52,7 @@ function ProgressCharts() {
   // Calculate monthly workout stats
   const monthlyStats = workoutHistory.reduce((acc, workout) => {
     const month = new Date(workout.date).getMonth();
-    const monthName = new Date(workout.date).toLocaleString(&apos;default&apos;, { month: &apos;short&apos; });
+    const monthName = new Date(workout.date).toLocaleString('default', { month: 'short' });
     
     if (!acc[monthName]) {
       acc[monthName] = {

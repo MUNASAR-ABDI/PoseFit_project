@@ -10,14 +10,14 @@ export async function GET(
     let data;
     try {
       data = await apiRequest(`/task-progress/${params.taskId}`, {
-        method: &apos;GET&apos;,
+        method: 'GET',
       });
     } catch (error) {
       // Return a fallback response if the API call fails
       return NextResponse.json({
         task_id: params.taskId,
         progress: 5, // Show some progress to give feedback
-        status: &apos;processing&apos;,
+        status: 'processing',
         message: 'Preparing your video...'
       });
     }
@@ -26,7 +26,7 @@ export async function GET(
     const responseData = {
       task_id: params.taskId,
       progress: Math.max(0, Math.min(100, data?.progress || 5)), // Clamp between 0-100
-      status: data?.status || &apos;processing&apos;,
+      status: data?.status || 'processing',
       message: data?.message || 'Processing your workout video...',
       elapsed_seconds: data?.elapsed_seconds || 0
     };

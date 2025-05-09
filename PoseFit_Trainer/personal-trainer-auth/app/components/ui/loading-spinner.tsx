@@ -1,11 +1,11 @@
-import React from &apos;react&apos;;
+import React from 'react';
 
 interface LoadingSpinnerProps {
-  size?: &apos;sm&apos; | &apos;md&apos; | &apos;lg&apos;;
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
-export function LoadingSpinner({ size = &apos;md&apos;, className = '' }: LoadingSpinnerProps) {
+export function LoadingSpinner({ size = 'md', className = '' }: LoadingSpinnerProps) {
   const sizeClasses = {
     sm: 'h-4 w-4 border-2',
     md: 'h-6 w-6 border-2',

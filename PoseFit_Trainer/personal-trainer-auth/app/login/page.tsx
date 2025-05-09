@@ -14,7 +14,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   
   // Check for timestamp parameter which indicates we came from logout
-  const timestamp = searchParams.get(&apos;t&apos;)
+  const timestamp = searchParams.get('t')
   const fromLogout = !!timestamp
   
   // Clear client-side state on initial load if coming from logout
@@ -49,14 +49,14 @@ export default function LoginPage() {
 
       if (result.success) {
         // Check if we have return parameters
-        const returnTo = searchParams.get(&apos;returnTo&apos;)
+        const returnTo = searchParams.get('returnTo')
         if (returnTo === '/workouts/camera') {
           // Reconstruct workout parameters
           const params = new URLSearchParams({
-            exercise: searchParams.get(&apos;exercise&apos;) || &apos;pushup&apos;,
-            sets: searchParams.get(&apos;sets&apos;) || &apos;3&apos;,
-            reps: searchParams.get(&apos;reps&apos;) || &apos;10&apos;,
-            from: &apos;login&apos;
+            exercise: searchParams.get('exercise') || 'pushup',
+            sets: searchParams.get('sets') || '3',
+            reps: searchParams.get('reps') || '10',
+            from: 'login'
           });
           // Use a direct navigation approach
           window.location.href = `/workouts/camera?${params.toString()}`

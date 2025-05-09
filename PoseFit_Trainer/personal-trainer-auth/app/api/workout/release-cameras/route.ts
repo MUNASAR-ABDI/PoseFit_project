@@ -6,7 +6,7 @@ export async function POST() {
   try {
     // Call the backend endpoint to release all cameras
     await apiRequest('/release-all-cameras', {
-      method: &apos;POST&apos;
+      method: 'POST'
     });
     
     return NextResponse.json({ 

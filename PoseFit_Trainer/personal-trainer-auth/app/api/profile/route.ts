@@ -2,17 +2,17 @@ import { cookies } from 'next/headers';
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  const session = cookies().get(&apos;session&apos;);
+  const session = cookies().get('session');
 
   if (!session?.value) {
-    return NextResponse.json({ error: &apos;Unauthorized&apos; }, { status: 401 });
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   try {
     const response = await fetch(`${process.env.API_URL || 'http://localhost:8002'}/profile`, {
       headers: {
-        &apos;Authorization&apos;: `Bearer ${session.value}`,
-        &apos;Accept&apos;: 'application/json',
+        'Authorization': `Bearer ${session.value}`,
+        'Accept': 'application/json',
       },
       cache: 'no-store',
     });

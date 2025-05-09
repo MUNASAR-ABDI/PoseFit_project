@@ -6,7 +6,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Check, Clock, Dumbbell, Flame } from 'lucide-react';
 import { formatExerciseName } from '@/lib/api-utils';
 import { useWorkoutHistory } from '@/hooks/useWorkoutHistory';
-import { useState, useEffect } from &apos;react&apos;;
+import { useState, useEffect } from 'react';
 import { Progress } from '@/components/ui/progress';
 
 export default function WorkoutSummaryPage() {
@@ -62,17 +62,17 @@ export default function WorkoutSummaryPage() {
         setProgressMessage(data.message || null);
         
         // If the process is complete or errored, stop polling
-        if ([&apos;completed&apos;, &apos;error&apos;].includes(data.status)) {
-          if (data.status === &apos;completed&apos;) {
+        if (['completed', 'error'].includes(data.status)) {
+          if (data.status === 'completed') {
             // Ensure progress reaches 100% for completed tasks
             setProgress(100);
             setTimeout(() => {
               setSuccessMessage('Video successfully processed and sent!');
-              setVideoAction(&apos;save_and_email&apos;);
+              setVideoAction('save_and_email');
               setLoading(false);
               setTaskId(null);
             }, 500); // Small delay for visual completion
-          } else if (data.status === &apos;error&apos;) {
+          } else if (data.status === 'error') {
             setError(data.message || 'Error processing video');
             setLoading(false);
             setTaskId(null);
@@ -100,7 +100,7 @@ export default function WorkoutSummaryPage() {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, &apos;0&apos;)}`;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   const handleContinue = () => {
@@ -121,12 +121,12 @@ export default function WorkoutSummaryPage() {
     setProgressMessage(null);
     
     // For save_and_email action, immediately show progress bar with indeterminate progress
-    if (action === &apos;save_and_email&apos;) {
+    if (action === 'save_and_email') {
       setIndeterminateProgress(true);
     }
     
     // Use session ID from sessionStorage
-    const sessionId = typeof window !== &apos;undefined&apos; ? sessionStorage.getItem(&apos;activeSessionId&apos;) : null;
+    const sessionId = typeof window !== 'undefined' ? sessionStorage.getItem('activeSessionId') : null;
     if (!sessionId) {
       setError('No session ID found.');
       setLoading(false);
@@ -135,17 +135,17 @@ export default function WorkoutSummaryPage() {
     }
     
     let endpoint = '';
-    if (action === &apos;save_and_email&apos;) endpoint = `/api/workout/video/save-and-email/${sessionId}`;
-    else if (action === &apos;save_only&apos;) endpoint = `/api/workout/video/save/${sessionId}`;
-    else if (action === &apos;delete&apos;) endpoint = `/api/workout/video/delete/${sessionId}`;
+    if (action === 'save_and_email') endpoint = `/api/workout/video/save-and-email/${sessionId}`;
+    else if (action === 'save_only') endpoint = `/api/workout/video/save/${sessionId}`;
+    else if (action === 'delete') endpoint = `/api/workout/video/delete/${sessionId}`;
     
     try {
-      const res = await fetch(endpoint, { method: &apos;POST&apos; });
+      const res = await fetch(endpoint, { method: 'POST' });
       const data = await res.json();
       
       if (!res.ok || data.error) throw new Error(data.error || 'Failed to process video action');
       
-      if (action === &apos;save_and_email&apos; && data.task_id) {
+      if (action === 'save_and_email' && data.task_id) {
         // If we received a task_id, start polling for progress
         setTaskId(data.task_id);
       } else {
@@ -244,9 +244,9 @@ export default function WorkoutSummaryPage() {
               <p className="mb-4 text-lg font-semibold">What would you like to do with your workout video?</p>
               {error && <div className="text-red-600 mb-2">{error}</div>}
               <div className="flex flex-col gap-4">
-                <Button onClick={() => handleVideoAction(&apos;save_and_email&apos;)} disabled={loading || indeterminateProgress}>Save Video & Email Me</Button>
-                <Button onClick={() => handleVideoAction(&apos;save_only&apos;)} disabled={loading || indeterminateProgress}>Save Only</Button>
-                <Button variant="destructive" onClick={() => handleVideoAction(&apos;delete&apos;)} disabled={loading || indeterminateProgress}>Delete Video</Button>
+                <Button onClick={() => handleVideoAction('save_and_email')} disabled={loading || indeterminateProgress}>Save Video & Email Me</Button>
+                <Button onClick={() => handleVideoAction('save_only')} disabled={loading || indeterminateProgress}>Save Only</Button>
+                <Button variant="destructive" onClick={() => handleVideoAction('delete')} disabled={loading || indeterminateProgress}>Delete Video</Button>
               </div>
             </div>
           )}

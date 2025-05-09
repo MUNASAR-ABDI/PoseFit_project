@@ -21,7 +21,7 @@ export async function GET(
     // Get headers except host and connection
     const headers: HeadersInit = {};
     request.headers.forEach((value, key) => {
-      if (key !== &apos;host&apos; && key !== &apos;connection&apos;) {
+      if (key !== 'host' && key !== 'connection') {
         headers[key] = value;
       }
     });
@@ -78,7 +78,7 @@ export async function POST(
     // Get headers except host and connection
     const headers: HeadersInit = {};
     request.headers.forEach((value, key) => {
-      if (key !== &apos;host&apos; && key !== &apos;connection&apos;) {
+      if (key !== 'host' && key !== 'connection') {
         headers[key] = value;
       }
     });

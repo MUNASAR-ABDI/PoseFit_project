@@ -8,7 +8,7 @@ export async function POST(
 ) {
   try {
     await apiRequest('/resume-workout', {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
       },

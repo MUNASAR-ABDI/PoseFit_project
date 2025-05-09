@@ -35,10 +35,10 @@ export async function POST(request: Request) {
       
       // Send to backend
       const backendResponse = await fetch(`${backendUrl}/workout-history`, {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          &apos;Authorization&apos;: authToken ? `Bearer ${authToken}` : ''
+          'Authorization': authToken ? `Bearer ${authToken}` : ''
         },
         body: JSON.stringify(formattedWorkout)
       });

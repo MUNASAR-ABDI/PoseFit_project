@@ -18,11 +18,11 @@ export async function POST(request: Request) {
     
     // Set the session cookie with the token - ensure it's accessible
     cookies().set({
-      name: &apos;session&apos;,
+      name: 'session',
       value: token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === &apos;production&apos;,
-      sameSite: &apos;lax&apos;,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
     });
@@ -30,9 +30,9 @@ export async function POST(request: Request) {
     // Also store auth indicator cookie that is accessible to client-side JS
     cookies().set({
       name: 'auth-status',
-      value: &apos;authenticated&apos;,
-      secure: process.env.NODE_ENV === &apos;production&apos;,
-      sameSite: &apos;lax&apos;,
+      value: 'authenticated',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
     });
@@ -40,9 +40,9 @@ export async function POST(request: Request) {
     // Set additional cookies for redundancy
     cookies().set({
       name: 'user-authenticated',
-      value: &apos;true&apos;,
-      secure: process.env.NODE_ENV === &apos;production&apos;,
-      sameSite: &apos;lax&apos;,
+      value: 'true',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
     });
@@ -52,8 +52,8 @@ export async function POST(request: Request) {
       cookies().set({
         name: 'user-email',
         value: userEmail,
-        secure: process.env.NODE_ENV === &apos;production&apos;,
-        sameSite: &apos;lax&apos;,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
         maxAge: 60 * 60 * 24 * 7, // 7 days
         path: '/',
       });
@@ -68,7 +68,7 @@ export async function POST(request: Request) {
       email: userEmail || null
     }, {
       headers: {
-        'Set-Cookie': `auth-status=authenticated; Path=/; Max-Age=${60 * 60 * 24 * 7}; SameSite=Lax;${process.env.NODE_ENV === &apos;production&apos; ? ' Secure;' : ''}`
+        'Set-Cookie': `auth-status=authenticated; Path=/; Max-Age=${60 * 60 * 24 * 7}; SameSite=Lax;${process.env.NODE_ENV === 'production' ? ' Secure;' : ''}`
       }
     });
   } catch (error) {

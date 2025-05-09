@@ -1,4 +1,4 @@
-import axios from &apos;axios&apos;;
+import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: 'http://localhost:8005',

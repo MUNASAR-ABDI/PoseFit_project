@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
 
         try {
           // In development mode, allow any login
-          if (process.env.NODE_ENV !== &apos;production&apos;) {
+          if (process.env.NODE_ENV !== 'production') {
             console.log('Development mode: allowing any login');
             return {
               id: credentials.email,
@@ -74,7 +74,7 @@ export const authOptions: NextAuthOptions = {
         token.id = user.id;
         token.email = user.email;
         // Add token from backend if available
-        if (&apos;token&apos; in user) {
+        if ('token' in user) {
           token.backendToken = user.token;
         }
       }
@@ -85,7 +85,7 @@ export const authOptions: NextAuthOptions = {
         session.user.id = token.id as string;
         session.user.email = token.email as string;
         // Pass token to session if available
-        if (&apos;backendToken&apos; in token) {
+        if ('backendToken' in token) {
           session.user.token = token.backendToken as string;
         }
       }

@@ -40,16 +40,16 @@ export async function verifyEmail(email: string, code: string): Promise<AuthResu
     
     // Try to connect to the backend
     const response = await tryFetch("/verify-email", {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({
         email,
         code,
       }),
-      credentials: &apos;include&apos;, // Allow cookies to be sent/received
+      credentials: 'include', // Allow cookies to be sent/received
     });
 
     if (!response.ok) {
@@ -71,13 +71,13 @@ export async function verifyEmail(email: string, code: string): Promise<AuthResu
       console.log('Access token received, storing credentials');
       
       // Store token in localStorage
-      localStorage.setItem(&apos;access_token&apos;, accessToken);
+      localStorage.setItem('access_token', accessToken);
       
       // Set authentication flag
-      localStorage.setItem(&apos;auth&apos;, &apos;true&apos;);
+      localStorage.setItem('auth', 'true');
 
       // Set user email for reference
-      localStorage.setItem(&apos;user_email&apos;, email);
+      localStorage.setItem('user_email', email);
       
       // Set cookie directly as well for redundancy
       document.cookie = `auth-status=authenticated; path=/; max-age=${60 * 60 * 24 * 7}`; // 7 days
@@ -105,13 +105,13 @@ export async function resendVerification(email: string): Promise<AuthResult> {
     console.log('Resending verification code to:', email);
     
     const response = await tryFetch("/resend-verification", {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 
         'Content-Type': 'application/json',
-        &apos;Accept&apos;: 'application/json',
+        'Accept': 'application/json',
       },
       body: JSON.stringify({ email }),
-      credentials: &apos;include&apos;, // Allow cookies to be sent/received
+      credentials: 'include', // Allow cookies to be sent/received
     });
 
     if (!response.ok) {

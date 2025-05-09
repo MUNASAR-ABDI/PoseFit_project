@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useCallback } from &apos;react&apos;;
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -31,9 +31,9 @@ export default function TerminalPage() {
   });
   const [isProcessing, setIsProcessing] = useState(true);
 
-  const exercise = searchParams.get(&apos;exercise&apos;);
-  const totalSets = parseInt(searchParams.get(&apos;sets&apos;) || &apos;0&apos;);
-  const repsPerSet = parseInt(searchParams.get(&apos;reps&apos;) || &apos;0&apos;);
+  const exercise = searchParams.get('exercise');
+  const totalSets = parseInt(searchParams.get('sets') || '0');
+  const repsPerSet = parseInt(searchParams.get('reps') || '0');
 
   const addOutput = useCallback((message: string) => {
     setOutput(prev => [...prev, message]);
@@ -42,22 +42,22 @@ export default function TerminalPage() {
   const initializeWorkout = useCallback(async () => {
     try {
       const response = await fetch('/api/workout/start', {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           exercise,
           sets: totalSets,
           reps: repsPerSet,
-          mode: &apos;terminal&apos;
+          mode: 'terminal'
         }),
-        credentials: &apos;include&apos;
+        credentials: 'include'
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         const errorMessage = errorData.detail || 'Failed to start workout';
         if (response.status === 401) {
-          localStorage.setItem(&apos;pendingWorkout&apos;, JSON.stringify({ exercise, sets: totalSets, reps: repsPerSet }));
+          localStorage.setItem('pendingWorkout', JSON.stringify({ exercise, sets: totalSets, reps: repsPerSet }));
           router.push('/login');
           return;
         }
@@ -93,7 +93,7 @@ export default function TerminalPage() {
       const isWorkoutComplete = isSetComplete && currentSet === totalSets;
 
       const response = await fetch('/api/workout/complete', {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           exercise,
@@ -134,7 +134,7 @@ export default function TerminalPage() {
   const startCameraWorkout = async () => {
     try {
       const response = await fetch('/api/workout/terminal-camera', {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           exercise,
@@ -192,7 +192,7 @@ export default function TerminalPage() {
             </div>
             <div className="mt-4 p-4 bg-muted rounded-lg">
               <p className="font-medium">Feedback:</p>
-              <p className="text-muted-foreground">{metrics.feedback || 'Initializing...'}</p>
+              <p className="text-muted-foreground">{metrics.feedback || &apos;Initializing...&apos;}</p>
             </div>
           </div>
         </CardContent>

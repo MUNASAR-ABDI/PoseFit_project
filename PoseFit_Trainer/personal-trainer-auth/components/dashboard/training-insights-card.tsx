@@ -27,7 +27,7 @@ export function TrainingInsightsCard() {
         
         // Fetch workout history from API
         const response = await fetch('/api/workouts/history', {
-          method: &apos;GET&apos;,
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
@@ -57,17 +57,17 @@ export function TrainingInsightsCard() {
                   exercise: exerciseName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                   feedback,
                   date: workout.date || workout.timestamp || new Date().toISOString(),
-                  improvement: feedback.toLowerCase().includes(&apos;improve&apos;) || feedback.toLowerCase().includes(&apos;better&apos;),
+                  improvement: feedback.toLowerCase().includes('improve') || feedback.toLowerCase().includes('better'),
                   score: workout.form_score || undefined
                 })
               })
-            } else if (typeof formFeedback === &apos;string&apos;) {
+            } else if (typeof formFeedback === 'string') {
               // If feedback is a string, add it as a single item
               feedbackItems.push({
                 exercise: exerciseName.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
                 feedback: formFeedback,
                 date: workout.date || workout.timestamp || new Date().toISOString(),
-                improvement: formFeedback.toLowerCase().includes(&apos;improve&apos;) || formFeedback.toLowerCase().includes(&apos;better&apos;),
+                improvement: formFeedback.toLowerCase().includes('improve') || formFeedback.toLowerCase().includes('better'),
                 score: workout.form_score || undefined
               })
             }
@@ -79,7 +79,7 @@ export function TrainingInsightsCard() {
           // Sample feedback for common exercises
           const sampleFeedback = [
             {
-              exercise: &apos;Squats&apos;,
+              exercise: 'Squats',
               feedback: 'Keep your back straight and go deeper for better results',
               date: new Date().toISOString(),
               improvement: true,
@@ -93,7 +93,7 @@ export function TrainingInsightsCard() {
               score: 92
             },
             {
-              exercise: &apos;Plank&apos;,
+              exercise: 'Plank',
               feedback: 'Keep your hips aligned with shoulders',
               date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
               improvement: true
@@ -216,8 +216,8 @@ export function TrainingInsightsCard() {
             <div className="flex justify-between items-center text-xs text-muted-foreground pt-1">
               <span>
                 {new Date(insight.date).toLocaleDateString('en-US', { 
-                  month: &apos;short&apos;, 
-                  day: &apos;numeric&apos;
+                  month: 'short', 
+                  day: 'numeric'
                 })}
               </span>
               {insight.score && (

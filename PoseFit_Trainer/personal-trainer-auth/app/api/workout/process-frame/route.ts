@@ -3,8 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
-    const frame = formData.get(&apos;frame&apos;);
-    const session_id = formData.get(&apos;session_id&apos;);
+    const frame = formData.get('frame');
+    const session_id = formData.get('session_id');
 
     if (!frame || !session_id) {
       return NextResponse.json(
@@ -15,17 +15,17 @@ export async function POST(request: NextRequest) {
 
     // Create a new FormData object to send to the backend
     const backendFormData = new FormData();
-    backendFormData.append(&apos;frame&apos;, frame);
-    backendFormData.append(&apos;session_id&apos;, session_id as string);
+    backendFormData.append('frame', frame);
+    backendFormData.append('session_id', session_id as string);
 
     // Get the backend URL from environment variable or use default
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8002';
 
     // Send the frame to the backend for processing
     const response = await fetch(`${backendUrl}/process-frame`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       body: backendFormData,
-      credentials: &apos;include&apos;,
+      credentials: 'include',
     });
 
     if (!response.ok) {

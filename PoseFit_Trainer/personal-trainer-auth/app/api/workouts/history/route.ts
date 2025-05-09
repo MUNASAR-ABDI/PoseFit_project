@@ -19,11 +19,11 @@ export async function GET() {
     try {
       // Make the request to the workout-history endpoint
       const response = await fetch(`${backendUrl}/workout-history`, {
-        method: &apos;GET&apos;,
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           // Add authorization with the token
-          &apos;Authorization&apos;: authToken ? `Bearer ${authToken}` : ''
+          'Authorization': authToken ? `Bearer ${authToken}` : ''
         },
       });
       
@@ -40,7 +40,7 @@ export async function GET() {
         // Remove this in production when properly connected to the backend
         const testWorkouts = [
           {
-            id: &apos;1&apos;,
+            id: '1',
             date: new Date().toISOString(),
             exercise: 'Bicep Curls',
             duration: 25,
@@ -61,7 +61,7 @@ export async function GET() {
       // Same test data as above for development
       const testWorkouts = [
         {
-          id: &apos;1&apos;,
+          id: '1',
           date: new Date().toISOString(),
           exercise: 'Bicep Curls',
           duration: 25,

@@ -63,17 +63,17 @@ export function middleware(request: NextRequest) {
   const url = request.nextUrl.pathname
   
   // Debug request URL and check for session
-  const hasSession = request.cookies.has(&apos;session&apos;)
+  const hasSession = request.cookies.has('session')
   
   // Add debugging headers if needed
-  if (process.env.NODE_ENV === &apos;development&apos;) {
+  if (process.env.NODE_ENV === 'development') {
     response.headers.set('X-Debug-URL', url)
-    response.headers.set('X-Has-Session', hasSession ? &apos;true&apos; : &apos;false&apos;)
+    response.headers.set('X-Has-Session', hasSession ? 'true' : 'false')
   }
   
   response.cookies.set('next-url', url, {
     httpOnly: true,
-    secure: process.env.NODE_ENV === &apos;production&apos;,
+    secure: process.env.NODE_ENV === 'production',
     path: '/',
   })
   

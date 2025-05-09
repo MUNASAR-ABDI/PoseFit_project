@@ -6,7 +6,7 @@ const BACKEND_URL = process.env.BACKEND_URL || 'http://localhost:8002';
 export async function POST(request: Request) {
   try {
     // Get auth token from cookies
-    const sessionToken = cookies().get(&apos;session&apos;);
+    const sessionToken = cookies().get('session');
 
     if (!sessionToken?.value) {
       console.log('No session token found');
@@ -25,10 +25,10 @@ export async function POST(request: Request) {
 
     // Make request to backend
     const backendResponse = await fetch(`${BACKEND_URL}/start-workout`, {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        &apos;Authorization&apos;: `Bearer ${sessionToken.value}`
+        'Authorization': `Bearer ${sessionToken.value}`
       },
       body: JSON.stringify({ exercise, sets, reps })
     });

@@ -45,7 +45,7 @@ const ActivityChart = () => {
               style={{ 
                 height: `${day.minutes * 1.5}px`,
                 backgroundColor: day.minutes > 0 ? '#8547e9' : '#2d2040',
-                border: day.minutes > 0 ? '1px solid rgba(255, 215, 0, 0.3)' : &apos;none&apos;,
+                border: day.minutes > 0 ? '1px solid rgba(255, 215, 0, 0.3)' : 'none',
               }}
             />
             <div className="text-xs text-gray-400 mt-1">{day.day}</div>
@@ -66,8 +66,8 @@ const ExerciseDemo = () => {
           className="absolute inset-0 animate-pulse-slow"
           style={{
             backgroundImage: `url('/videos/Bicep Curl.gif')`,
-            backgroundSize: &apos;cover&apos;,
-            backgroundPosition: &apos;center&apos;,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             filter: 'brightness(1.2) contrast(1.1)',
           }}
         />
@@ -168,9 +168,9 @@ const AchievementsDemo = () => {
     <div className="w-full h-full flex flex-col items-center justify-center p-4" 
       style={{
         backgroundImage: `url('/onboarding/achievements.jpg')`,
-        backgroundSize: &apos;cover&apos;,
-        backgroundPosition: &apos;center&apos;,
-        backgroundBlendMode: &apos;overlay&apos;,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundBlendMode: 'overlay',
         backgroundColor: 'rgba(42, 20, 71, 0.85)'
       }}>
       <div className="mb-4 flex items-center">
@@ -299,8 +299,8 @@ export function OnboardingTutorial({ onComplete }: { onComplete: () => void }) {
 
   const handleComplete = () => {
     // Store in local storage that tutorial has been completed
-    if (typeof window !== &apos;undefined&apos;) {
-      localStorage.setItem(&apos;tutorial_completed&apos;, &apos;true&apos;)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('tutorial_completed', 'true')
     }
     setVisible(false)
     if (onComplete) onComplete()
@@ -308,8 +308,8 @@ export function OnboardingTutorial({ onComplete }: { onComplete: () => void }) {
 
   const handleDismiss = () => {
     // Store in local storage that tutorial has been seen
-    if (typeof window !== &apos;undefined&apos;) {
-      localStorage.setItem(&apos;tutorial_completed&apos;, &apos;true&apos;)
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('tutorial_completed', 'true')
     }
     setVisible(false)
     if (onComplete) onComplete()
@@ -317,9 +317,9 @@ export function OnboardingTutorial({ onComplete }: { onComplete: () => void }) {
 
   // Check if the tutorial has already been completed
   useEffect(() => {
-    if (typeof window !== &apos;undefined&apos;) {
-      const tutorialCompleted = localStorage.getItem(&apos;tutorial_completed&apos;)
-      if (tutorialCompleted === &apos;true&apos;) {
+    if (typeof window !== 'undefined') {
+      const tutorialCompleted = localStorage.getItem('tutorial_completed')
+      if (tutorialCompleted === 'true') {
         setVisible(false)
       }
     }

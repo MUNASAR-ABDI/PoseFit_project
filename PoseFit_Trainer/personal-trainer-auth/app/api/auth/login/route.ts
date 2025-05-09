@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     // Call your backend /token endpoint
     const response = await fetch('http://localhost:8002/token', {
-      method: &apos;POST&apos;,
+      method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: new URLSearchParams({ username: email, password }),
     });
@@ -45,11 +45,11 @@ export async function POST(request: Request) {
 
     // Set the cookie with the token
     cookies().set({
-      name: &apos;session&apos;,
+      name: 'session',
       value: data.access_token,
       httpOnly: true,
-      secure: process.env.NODE_ENV === &apos;production&apos;,
-      sameSite: &apos;lax&apos;,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7, // 7 days
       path: '/',
     });

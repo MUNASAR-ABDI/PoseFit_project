@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from &apos;react&apos;;
+import { useEffect, useState } from 'react';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { formatExerciseName } from '@/lib/api-utils';
@@ -14,7 +14,7 @@ type WorkoutClientProps = {
 };
 
 function getSessionCookie() {
-  if (typeof document === &apos;undefined&apos;) return null;
+  if (typeof document === 'undefined') return null;
   const match = document.cookie.match(/(?:^|; )session=([^;]*)/);
   return match ? decodeURIComponent(match[1]) : null;
 }
@@ -44,7 +44,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
       if (sessionId) {
         // Use the sync version of XMLHttpRequest to ensure it runs before page unloads
         const xhr = new XMLHttpRequest();
-        xhr.open(&apos;POST&apos;, '/api/workout/release-cameras', false); // false makes it synchronous
+        xhr.open('POST', '/api/workout/release-cameras', false); // false makes it synchronous
         xhr.setRequestHeader('Content-Type', 'application/json');
         try {
           xhr.send();
@@ -55,23 +55,23 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
       }
     };
     
-    window.addEventListener(&apos;beforeunload&apos;, handleBeforeUnload);
+    window.addEventListener('beforeunload', handleBeforeUnload);
     
     // Cleanup function to ensure camera resources are released
     return () => {
       // Remove the event listener
-      window.removeEventListener(&apos;beforeunload&apos;, handleBeforeUnload);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
       
       // When component unmounts, release cameras and clean up
       if (sessionId) {
         console.log('Component unmounting, cleaning up resources');
         
         // Release all cameras immediately
-        fetch('/api/workout/release-cameras', { method: &apos;POST&apos; })
+        fetch('/api/workout/release-cameras', { method: 'POST' })
           .catch(err => console.error('Error releasing cameras on unmount:', err));
           
         // Also try to stop the workout session
-        fetch(`/api/workout/stop/${sessionId}`, { method: &apos;POST&apos; })
+        fetch(`/api/workout/stop/${sessionId}`, { method: 'POST' })
           .catch(err => console.error('Error stopping workout on unmount:', err));
       }
     };
@@ -82,7 +82,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
       setStreamError(null);
       setAuthError(null);
       const response = await fetch('/api/workout', {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           exercise,
@@ -109,8 +109,8 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
       }
 
       setSessionId(data.session_id);
-      if (typeof window !== &apos;undefined&apos;) {
-        sessionStorage.setItem(&apos;activeSessionId&apos;, data.session_id);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('activeSessionId', data.session_id);
       }
       startMetricsUpdate();
     } catch (error) {
@@ -164,7 +164,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
       console.log('Stopping workout session:', sessionId);
       
       // First, release all cameras to ensure they are turned off immediately
-      await fetch('/api/workout/release-cameras', { method: &apos;POST&apos; })
+      await fetch('/api/workout/release-cameras', { method: 'POST' })
         .catch(err => console.error('Error releasing cameras:', err));
       
       // Start navigating to summary page immediately
@@ -193,7 +193,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
         .catch(error => console.error('Error getting final metrics:', error));
       
       // Stop the workout session in the background
-      fetch(`/api/workout/stop/${sessionId}`, { method: &apos;POST&apos; })
+      fetch(`/api/workout/stop/${sessionId}`, { method: 'POST' })
         .catch(error => console.error('Error stopping workout:', error));
       
       // Make sure navigation happens regardless
@@ -208,7 +208,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
   const pauseWorkout = async () => {
     if (!sessionId) return;
     try {
-      await fetch(`/api/workout/pause/${sessionId}`, { method: &apos;POST&apos; });
+      await fetch(`/api/workout/pause/${sessionId}`, { method: 'POST' });
       setIsPaused(true);
     } catch (error) {
       console.error('Error pausing workout:', error);
@@ -218,7 +218,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
   const resumeWorkout = async () => {
     if (!sessionId) return;
     try {
-      await fetch(`/api/workout/resume/${sessionId}`, { method: &apos;POST&apos; });
+      await fetch(`/api/workout/resume/${sessionId}`, { method: 'POST' });
       setIsPaused(false);
     } catch (error) {
       console.error('Error resuming workout:', error);
@@ -228,7 +228,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
-    return `${mins.toString().padStart(2, &apos;0&apos;)}:${secs.toString().padStart(2, &apos;0&apos;)}`;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
   return (
@@ -272,7 +272,7 @@ export function WorkoutClient({ exercise, sets, reps }: WorkoutClientProps) {
                   className="font-bold text-lg shadow-lg"
                   onClick={isPaused ? resumeWorkout : pauseWorkout}
                 >
-                  {isPaused ? &apos;Resume&apos; : &apos;Pause&apos;}
+                  {isPaused ? 'Resume' : 'Pause'}
                 </Button>
                 <Button
                   variant="destructive"

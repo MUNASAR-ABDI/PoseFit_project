@@ -38,7 +38,7 @@ export function LoginForm() {
     try {
       // Call the new API route to login and set the session cookie
       const response = await fetch('/api/auth/login', {
-        method: &apos;POST&apos;,
+        method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: data.email, password: data.password }),
       });
