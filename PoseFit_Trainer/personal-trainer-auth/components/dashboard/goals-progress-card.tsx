@@ -18,6 +18,8 @@ interface GoalData {
   weeklyProgress: number
 }
 
+type Workout = { date?: string; timestamp?: string };
+
 export function GoalsProgressCard() {
   const [loading, setLoading] = useState(true)
   const [goalData, setGoalData] = useState<GoalData | null>(null)
@@ -76,8 +78,8 @@ export function GoalsProgressCard() {
         startOfWeek.setDate(now.getDate() - now.getDay()) // Sunday
         startOfWeek.setHours(0, 0, 0, 0)
         
-        const weeklyProgress = workouts.filter((workout: unknown) => 
-          new Date(workout.date || workout.timestamp) >= startOfWeek
+        const weeklyProgress = workouts.filter((workout: Workout) => 
+          new Date(workout.date || workout.timestamp || 0) >= startOfWeek
         ).length
         
         // Map the fitness goal type to our UI values
