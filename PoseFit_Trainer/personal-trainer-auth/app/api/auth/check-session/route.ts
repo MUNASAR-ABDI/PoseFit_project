@@ -4,7 +4,7 @@ import { cookies } from 'next/headers'
 export async function GET(request: NextRequest) {
   try {
     // Get session token from cookie or Authorization header
-    const cookieStore = cookies()
+    const cookieStore = await cookies()
     const sessionCookie = cookieStore.get('session')
     
     // Get from Authorization header as fallback
