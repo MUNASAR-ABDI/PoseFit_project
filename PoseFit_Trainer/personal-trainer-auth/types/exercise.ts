@@ -2,7 +2,7 @@ export interface Exercise {
   id: string;
   name: string;
   description: string;
-  icon: any;
+  icon: unknown;
   difficulty: string;
   duration: string;
   targetMuscles: string[];
