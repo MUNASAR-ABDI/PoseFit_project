@@ -4,19 +4,20 @@ import time
 import shutil
 from datetime import datetime
 
+
 def clean_temp_videos():
     print("Starting cleanup of temp_videos directory...")
-    
+
     # Get the path to the temp_videos directory
     current_dir = os.path.dirname(os.path.abspath(__file__))
     temp_dir = os.path.join(current_dir, "temp_videos")
-    
+
     if not os.path.exists(temp_dir):
         print(f"Temp directory does not exist: {temp_dir}")
         return False
-        
+
     print(f"Cleaning directory: {temp_dir}")
-    
+
     # Try to remove all files in the directory
     try:
         files_removed = 0
@@ -32,7 +33,7 @@ def clean_temp_videos():
                         print(f"Successfully deleted: {filename}")
                     except Exception as e:
                         print(f"Error deleting {filename}: {e}")
-                        
+
                         # If removing fails, try with file unlinking
                         try:
                             print(f"Trying alternative method to delete {filename}")
@@ -46,25 +47,28 @@ def clean_temp_videos():
                             print(f"Unlink also failed: {unlink_err}")
             except Exception as e:
                 print(f"Error processing file {filename}: {e}")
-                
+
         print(f"Cleanup complete. Removed {files_removed} files.")
-        
+
         # Create marker to show cleanup was performed
         try:
-            marker_path = os.path.join(temp_dir, f"manual_cleanup_{int(time.time())}.txt")
+            marker_path = os.path.join(
+                temp_dir, f"manual_cleanup_{int(time.time())}.txt"
+            )
             with open(marker_path, "w") as f:
                 f.write(f"Manual cleanup performed at {datetime.now().isoformat()}")
             print(f"Created cleanup marker: {marker_path}")
         except Exception as marker_err:
             print(f"Error creating cleanup marker: {marker_err}")
-            
+
         return True
     except Exception as e:
         print(f"Error during cleanup: {e}")
         return False
 
+
 if __name__ == "__main__":
     print("=== TEMP VIDEOS CLEANUP UTILITY ===")
     clean_temp_videos()
     print("Press Enter to exit...")
-    input() 
+    input()
