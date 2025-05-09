@@ -43,7 +43,7 @@ export async function GET(request: NextRequest) {
         try {
           const errorBody = await response.json();
           errorDetail = JSON.stringify(errorBody);
-        } catch (e) {
+        } catch (_) {
           errorDetail = 'Could not parse error response';
         }
         
