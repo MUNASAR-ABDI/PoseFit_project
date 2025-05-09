@@ -12,14 +12,18 @@ ENV NEXT_FONT_GOOGLE_MOCKED=true
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Clean install dependencies
-RUN npm ci
+# Clear npm cache and install all dependencies (including dev dependencies)
+RUN npm cache clean --force && \
+    npm install --production=false
 
 # Copy the rest of the application
 COPY . .
 
 # Build the application
 RUN npm run build
+
+# Prune dev dependencies
+RUN npm prune --production
 
 # Expose the port the app runs on
 EXPOSE 3000
