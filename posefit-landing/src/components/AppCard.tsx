@@ -8,7 +8,6 @@ interface AppCardProps {
   description: string;
   features: string[];
   accentColor: string;
-  buttonColor: string;
   buttonText: string;
   icon: React.ReactNode;
   url: string;
@@ -19,19 +18,10 @@ export default function AppCard({
   description,
   features,
   accentColor,
-  buttonColor,
   buttonText,
   icon,
   url
 }: AppCardProps) {
-  const { resolvedTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  
-  // Wait until mounted to avoid hydration mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-  
   return (
     <div 
       style={{

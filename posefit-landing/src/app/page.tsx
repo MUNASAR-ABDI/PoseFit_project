@@ -2,8 +2,6 @@
 
 import AppCard from '@/components/AppCard';
 import { AssistantIcon, TrainerIcon } from '@/components/Icons';
-import { ThemeToggle } from '@/components/ThemeToggle';
-import { useEffect, useState } from 'react';
 
 export default function Home() {
   return (
@@ -124,7 +122,6 @@ export default function Home() {
             'Progress tracking'
           ]}
           accentColor="linear-gradient(90deg, #6a26cd, #8547e9)"
-          buttonColor="#6a26cd"
           buttonText="Open Assistant"
           icon={<AssistantIcon />}
           url={process.env.NEXT_PUBLIC_ASSISTANT_URL || "http://localhost:3001"}
@@ -140,7 +137,6 @@ export default function Home() {
             'Video recording & feedback'
           ]}
           accentColor="linear-gradient(90deg, #6a26cd, #8547e9)"
-          buttonColor="#6a26cd"
           buttonText="Start Training"
           icon={<TrainerIcon />}
           url={process.env.NEXT_PUBLIC_TRAINER_URL || "http://localhost:3000"}
