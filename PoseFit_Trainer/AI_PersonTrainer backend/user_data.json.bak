@@ -1,0 +1,26 @@
+{
+    "mubarkalnahdi21@gmail.com": {
+        "email": "mubarkalnahdi21@gmail.com",
+        "hashed_password": "$2b$12$Qzzr553/QsQaCBSnyPelCuh6Z.aM9ohWwAIYkNj1c43dbAkW9921.",
+        "first_name": "MUBARAK",
+        "last_name": "HUWAIL",
+        "age": 25,
+        "gender": null,
+        "weight": 70.0,
+        "height": 175.0,
+        "verified": true,
+        "verification_time": 1746719582.250469
+    },
+    "mounassar34@gmail.com": {
+        "email": "mounassar34@gmail.com",
+        "hashed_password": "$2b$12$oeso1zpMJN1TJWYWWZsVu.Z3lB2ZgnX7DLeESV0IxNgTDNVGPv05S",
+        "first_name": "munasar",
+        "last_name": "warsame",
+        "age": 23,
+        "gender": "male",
+        "weight": 65.0,
+        "height": 173.0,
+        "verified": true,
+        "verification_time": 1746745179.8715541
+    }
+}

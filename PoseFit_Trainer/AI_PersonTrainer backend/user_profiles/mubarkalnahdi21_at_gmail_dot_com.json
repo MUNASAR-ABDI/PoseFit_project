@@ -1,0 +1,74 @@
+{
+    "user_id": "mubarkalnahdi21_at_gmail_dot_com",
+    "email": "mubarkalnahdi21@gmail.com",
+    "first_name": "MUBARAK",
+    "last_name": "HUWAIL",
+    "created_at": "2025-05-04 12:36:10",
+    "last_login": "2025-05-04 12:36:10",
+    "goals": {
+        "weekly_workouts": 3,
+        "calories_per_workout": 200,
+        "minutes_per_workout": 30,
+        "target_weight": null,
+        "fitness_goal_type": "general_fitness"
+    },
+    "preferences": {
+        "preferred_exercises": [],
+        "rest_time_between_sets": 30,
+        "difficulty_level": "beginner"
+    },
+    "workout_history": [
+        {
+            "session_id": "42c7c8e0-9e6b-466b-b99e-e4782b9477b3",
+            "exercise_type": "bicep_curls",
+            "sets_completed": 3,
+            "total_sets": 3,
+            "reps_completed": 10,
+            "total_reps": 10,
+            "calories": 15,
+            "time_elapsed": 120,
+            "date": "2025-05-06 13:08:40",
+            "video_filename": "workout_session_42c7c8e0-9e6b-466b-b99e-e4782b9477b3_20250506_125550.mp4"
+        },
+        {
+            "session_id": "ca2249a1-5de7-40ae-9e2e-bed6b4f3e95d",
+            "exercise_type": "warmup",
+            "sets_completed": 1,
+            "total_sets": 3,
+            "reps_completed": 0,
+            "total_reps": 0,
+            "calories": 0,
+            "time_elapsed": 0,
+            "date": "2025-05-06 13:33:28",
+            "video_filename": "workout_session_ca2249a1-5de7-40ae-9e2e-bed6b4f3e95d_20250506_133325.mp4"
+        },
+        {
+            "session_id": "0905f126-22a4-43a8-bd73-011193448c06",
+            "exercise_type": "squats",
+            "sets_completed": 1,
+            "total_sets": 3,
+            "reps_completed": 0,
+            "total_reps": 0,
+            "calories": 0,
+            "time_elapsed": 0,
+            "date": "2025-05-06 13:55:19",
+            "video_filename": "Squats_20250506_135505.avi"
+        }
+    ],
+    "stats": {
+        "total_workouts": 0,
+        "total_calories": 0,
+        "total_time": 0,
+        "total_reps": 0,
+        "favorite_exercise": null
+    },
+    "body_metrics": {
+        "weight": 70.0,
+        "height": 175.0,
+        "age": 25,
+        "gender": "male",
+        "bmi": 22.9,
+        "bmi_category": "Normal weight",
+        "fitness_level": "beginner"
+    }
+}

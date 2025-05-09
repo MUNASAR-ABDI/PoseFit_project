@@ -1,0 +1,37 @@
+{
+  "user_id": "alnahdimubark0_at_gmail_dot_com",
+  "email": "alnahdimubark0@gmail.com",
+  "first_name": "MUBARAK",
+  "last_name": "HUWAIL",
+  "created_at": "2025-05-07 23:58:47",
+  "last_login": "2025-05-07 23:58:47",
+  "goals": {
+    "weekly_workouts": 3,
+    "calories_per_workout": 200,
+    "minutes_per_workout": 30,
+    "target_weight": null,
+    "fitness_goal_type": "general_fitness"
+  },
+  "preferences": {
+    "preferred_exercises": [],
+    "rest_time_between_sets": 30,
+    "difficulty_level": "beginner"
+  },
+  "workout_history": [],
+  "stats": {
+    "total_workouts": 0,
+    "total_calories": 0,
+    "total_time": 0,
+    "total_reps": 0,
+    "favorite_exercise": null
+  },
+  "body_metrics": {
+    "weight": 70.0,
+    "height": 173.0,
+    "age": 25,
+    "gender": null,
+    "bmi": 23.4,
+    "bmi_category": "Normal weight",
+    "fitness_level": "beginner"
+  }
+}

@@ -1,0 +1,57 @@
+{
+    "user_id": "mounassar34_at_gmail_dot_com",
+    "email": "mounassar34@gmail.com",
+    "first_name": "Munasar",
+    "last_name": "Warsame",
+    "body_metrics": {
+        "weight": 65.0,
+        "height": 173.0,
+        "age": 23,
+        "gender": "male",
+        "bmi": 21.7,
+        "bmi_category": "Normal weight"
+    },
+    "workout_history": [
+        {
+            "date": "2024-03-15 10:00:00",
+            "exercises": [
+                {"name": "Squats"},
+                {"name": "Push Ups"},
+                {"name": "Mountain Climbers"}
+            ],
+            "calories": 150,
+            "time_elapsed": 1200,
+            "reps_completed": 45,
+            "rep_completion": 85.0
+        },
+        {
+            "date": "2024-03-18 15:30:00",
+            "exercises": [
+                {"name": "Push Ups"},
+                {"name": "Bicep Curls"},
+                {"name": "Mountain Climbers"}
+            ],
+            "calories": 180,
+            "time_elapsed": 1500,
+            "reps_completed": 50,
+            "rep_completion": 90.0
+        },
+        {
+            "date": "2024-03-22 09:00:00",
+            "exercises": [
+                {"name": "Squats"},
+                {"name": "Push Ups"},
+                {"name": "Bicep Curls"}
+            ],
+            "calories": 200,
+            "time_elapsed": 1800,
+            "reps_completed": 55,
+            "rep_completion": 95.0
+        }
+    ],
+    "goals": {
+        "weekly_workouts": 3,
+        "calories_per_workout": 200,
+        "minutes_per_workout": 30
+    }
+} 

@@ -1,0 +1,124 @@
+
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <title>Fitness Progress Dashboard - mubark ban huwail</title>
+                <style>
+                    body { font-family: Arial, sans-serif; margin: 0; padding: 20px; color: #333; }
+                    h1, h2 { color: #0066cc; }
+                    .dashboard { display: flex; flex-wrap: wrap; }
+                    .card { background: #f9f9f9; border-radius: 8px; padding: 15px; margin: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+                    .profile-card { width: 300px; }
+                    .stats-card { width: 300px; }
+                    .chart-container { margin-top: 20px; }
+                    .metric { font-size: 24px; font-weight: bold; color: #0066cc; }
+                    .label { font-size: 14px; color: #666; }
+                    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+                    th, td { padding: 8px; text-align: left; border-bottom: 1px solid #ddd; }
+                    th { background-color: #f2f2f2; }
+                    .bmi-underweight { color: #ff9900; }
+                    .bmi-normal { color: #33cc33; }
+                    .bmi-overweight { color: #ff6600; }
+                    .bmi-obese { color: #cc0000; }
+                </style>
+            </head>
+            <body>
+                <h1>Fitness Progress Dashboard</h1>
+                <div class="dashboard">
+                    <div class="card profile-card">
+                        <h2>Profile</h2>
+                        <p><strong>Name:</strong> mubark ban huwail</p>
+                        <p><strong>Weight:</strong> 65 kg</p>
+                        <p><strong>Height:</strong> 170 cm</p>
+                        <p><strong>BMI:</strong> 22.5</p>
+                        <p><strong>Category:</strong> <span class="bmi-normal">Normal weight</span></p>
+                    </div>
+                    
+                    <div class="card stats-card">
+                        <h2>Workout Statistics</h2>
+                        <div>
+                            <div class="metric">1</div>
+                            <div class="label">Total Workouts</div>
+                        </div>
+                        <div>
+                            <div class="metric">2.0</div>
+                            <div class="label">Total Calories Burned</div>
+                        </div>
+                        <div>
+                            <div class="metric">0.3</div>
+                            <div class="label">Total Minutes</div>
+                        </div>
+                        <div>
+                            <div class="metric">0</div>
+                            <div class="label">Total Reps</div>
+                        </div>
+                    </div>
+                    
+                    <div class="card stats-card">
+                        <h2>Recent Averages (4 weeks)</h2>
+                        <div>
+                            <div class="metric">2.0</div>
+                            <div class="label">Avg. Calories per Workout</div>
+                        </div>
+                        <div>
+                            <div class="metric">0.3</div>
+                            <div class="label">Avg. Minutes per Workout</div>
+                        </div>
+                        <div>
+                            <div class="metric">100.0%</div>
+                            <div class="label">Avg. Completion Rate</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h2>Recent Workouts</h2>
+                    <table>
+                        <tr>
+                            <th>Date</th>
+                            <th>Exercises</th>
+                            <th>Calories</th>
+                            <th>Duration</th>
+                            <th>Completion</th>
+                        </tr>
+            
+                    <tr>
+                        <td>2025-04-22</td>
+                        <td>Bicep Curls</td>
+                        <td>2</td>
+                        <td>0.3 min</td>
+                        <td>100.0%</td>
+                    </tr>
+                
+                    </table>
+                </div>
+                
+                <div class="chart-container">
+                    <h2>Progress Charts</h2>
+                    <div class="dashboard">
+            
+                    <div class="card">
+                        <h3>Calories Progress</h3>
+                        <img src="../charts/alnahdimubark0_at_gmail_dot_com_calories_chart.png" alt="Calories progress chart" style="max-width: 100%;">
+                    </div>
+                
+                    <div class="card">
+                        <h3>Time Progress</h3>
+                        <img src="../charts/alnahdimubark0_at_gmail_dot_com_time_chart.png" alt="Time progress chart" style="max-width: 100%;">
+                    </div>
+                
+                    <div class="card">
+                        <h3>Reps Progress</h3>
+                        <img src="../charts/alnahdimubark0_at_gmail_dot_com_reps_chart.png" alt="Reps progress chart" style="max-width: 100%;">
+                    </div>
+                
+                    <div class="card">
+                        <h3>Completion Progress</h3>
+                        <img src="../charts/alnahdimubark0_at_gmail_dot_com_completion_chart.png" alt="Completion progress chart" style="max-width: 100%;">
+                    </div>
+                
+                    </div>
+                </div>
+            </body>
+            </html>
+            

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id                    String           @id @default(cuid())
+  email                 String           @unique
+  name                  String?
+  password              String
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  activeWorkoutSession  WorkoutSession?  @relation("ActiveWorkout", fields: [activeWorkoutSessionId], references: [id])
+  activeWorkoutSessionId String?         @unique
+  workoutSessions      WorkoutSession[] @relation("UserWorkouts")
+}
+
+model WorkoutSession {
+  id            String    @id @default(cuid())
+  userId        String
+  user          User      @relation("UserWorkouts", fields: [userId], references: [id])
+  activeForUser User?     @relation("ActiveWorkout")
+  exercise      String
+  totalSets     Int
+  totalReps     Int
+  currentSet    Int       @default(1)
+  currentRep    Int       @default(0)
+  completed     Boolean   @default(false)
+  startedAt     DateTime  @default(now())
+  completedAt   DateTime?
+  lastUpdated   DateTime  @default(now())
+
+  @@index([userId])
+} 

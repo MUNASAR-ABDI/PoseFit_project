@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./PoseFit_Trainer/AI_PersonTrainer backend
+      dockerfile: Dockerfile
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./PoseFit_Trainer/AI_PersonTrainer backend:/app
+      - backend_data:/app/user_profiles
+      - backend_videos:/app/saved_workouts
+      - backend_temp:/app/temp_videos
+    env_file:
+      - ./PoseFit_Trainer/AI_PersonTrainer backend/.env
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8002
+      - FRAME_INTERVAL=0.033
+      - DOWNSCALE_FACTOR=1.0
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+    networks:
+      - posefit-network
+    
+  posefit-trainer:
+    build:
+      context: ./PoseFit_Trainer/personal-trainer-auth
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./PoseFit_Trainer/personal-trainer-auth:/app
+      - /app/node_modules
+    depends_on:
+      backend:
+        condition: service_healthy
+    environment:
+      - BACKEND_URL=http://backend:8002
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - posefit-network
+
+  convex:
+    build:
+      context: ./PoseFit_assistant
+      dockerfile: Dockerfile.convex
+    volumes:
+      - ./PoseFit_assistant:/app
+      - /app/node_modules
+    command: npx convex dev
+    restart: unless-stopped
+    networks:
+      - posefit-network
+
+  posefit-assistant:
+    build:
+      context: ./PoseFit_assistant
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./PoseFit_assistant:/app
+      - /app/node_modules
+    depends_on:
+      - convex
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - posefit-network
+
+  posefit-landing:
+    build:
+      context: ./posefit-landing
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    volumes:
+      - ./posefit-landing:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+    restart: unless-stopped
+    networks:
+      - posefit-network
+
+volumes:
+  backend_data:
+  backend_videos:
+  backend_temp:
+
+networks:
+  posefit-network: 
