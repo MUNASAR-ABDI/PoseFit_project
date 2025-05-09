@@ -17,6 +17,8 @@ COPY . .
 # Build the application with ESLint disabled
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV DISABLE_ESLINT_PLUGIN=true
+ENV NEXT_PUBLIC_CONVEX_URL=https://example.com
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_1234567890
 RUN npm run build
 
 # Expose the port the app runs on
