@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 'use client';
 
 export default function NotFound() {
@@ -9,12 +11,12 @@ export default function NotFound() {
           The page you are looking for does not exist or has been moved.
         </p>
         <div className="flex justify-center">
-          <a 
+          <Link
             href="/"
             className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors"
           >
             Return Home
-          </a>
+          </Link>
         </div>
       </div>
     </div>
