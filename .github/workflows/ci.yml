@@ -38,6 +38,14 @@ jobs:
         python api_server.py &
         # Wait for server to start
         sleep 15
+
+    - name: Print backend server logs for debugging
+      run: |
+        ps aux
+        # Print the last 100 lines of output (if any)
+        tail -n 100 PoseFit_Trainer/AI_PersonTrainer\ backend/*.log || true
+        tail -n 100 /tmp/*.log || true
+        tail -n 100 /var/log/*.log || true
     
     - name: Test API health
       run: |
