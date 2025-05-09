@@ -63,34 +63,6 @@ if [ ! -f "$ROOT_DIR/PoseFit_Trainer/AI_PersonTrainer backend/.env" ]; then
     cd "$ROOT_DIR"
 fi
 
-# Check for Docker presence (optional)
-if command -v docker &> /dev/null; then
-    echo -e "${YELLOW}Docker is available. Would you like to use Docker? (y/n)${NC}"
-    read -n 1 -r
-    echo
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-        echo -e "${YELLOW}Starting with Docker...${NC}"
-        docker-compose up -d
-        if [ $? -eq 0 ]; then
-            echo ""
-            echo -e "${GREEN}======================================================${NC}"
-            echo -e "${GREEN}Application started successfully with Docker!${NC}"
-            echo -e "${CYAN}The landing page is available at: http://localhost:4000${NC}"
-            echo -e "${CYAN}The PoseFit Assistant is available at: http://localhost:3001${NC}"
-            echo -e "${CYAN}The PoseFit Trainer is available at: http://localhost:3000${NC}"
-            echo -e "${CYAN}The backend API is available at: http://localhost:8002${NC}"
-            echo -e "${CYAN}API documentation: http://localhost:8002/api/docs${NC}"
-            echo -e "${GREEN}======================================================${NC}"
-            echo ""
-            echo -e "${YELLOW}Press any key to exit...${NC}"
-            read -n 1
-            exit 0
-        else
-            echo -e "${YELLOW}Docker failed to start. Falling back to direct execution...${NC}"
-        fi
-    fi
-fi
-
 # Clean temp videos directory
 echo -e "${YELLOW}Cleaning temporary video files...${NC}"
 if [ -d "$ROOT_DIR/PoseFit_Trainer/AI_PersonTrainer backend/temp_videos" ]; then
@@ -127,7 +99,6 @@ if nc -z localhost 8002 &>/dev/null; then
 else
     echo -e "${YELLOW}WARNING: API server may not have started correctly.${NC}"
     echo -e "${YELLOW}Please check the API Server window for errors.${NC}"
-    read -n 1
 fi
 
 # Start the PoseFit Trainer frontend
