@@ -32,6 +32,7 @@ jobs:
     
     - name: Start API server for testing
       run: |
+        export PORT=8002
         cd PoseFit_Trainer/AI_PersonTrainer\ backend
         python generate_key.py
         python api_server.py &
