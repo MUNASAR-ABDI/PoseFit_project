@@ -63,6 +63,10 @@ services:
     build:
       context: ./PoseFit_assistant
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y29tcG9zZWQtc2N1bHBpbi02MC5jbGVyay5hY2NvdW50cy5kZXYk
+        - CLERK_SECRET_KEY=sk_test_fLtgeNhSLuo1ZYP6zr9walZaQKo8wGwLGtIGoVZyQv
+        - NEXT_PUBLIC_CONVEX_URL=https://benevolent-cow-710.convex.cloud
     ports:
       - "3001:3000"
     volumes:
@@ -73,6 +77,9 @@ services:
     environment:
       - NODE_ENV=production
       - PORT=3000
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_Y29tcG9zZWQtc2N1bHBpbi02MC5jbGVyay5hY2NvdW50cy5kZXYk
+      - CLERK_SECRET_KEY=sk_test_fLtgeNhSLuo1ZYP6zr9walZaQKo8wGwLGtIGoVZyQv
+      - NEXT_PUBLIC_CONVEX_URL=https://benevolent-cow-710.convex.cloud
     restart: unless-stopped
     networks:
       - posefit-network
