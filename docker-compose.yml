@@ -10,19 +10,30 @@ services:
       - backend_data:/app/user_profiles
       - backend_videos:/app/saved_workouts
       - backend_temp:/app/temp_videos
-    env_file:
-      - ./PoseFit_Trainer/AI_PersonTrainer backend/.env
     environment:
       - HOST=0.0.0.0
       - PORT=8002
       - FRAME_INTERVAL=0.033
       - DOWNSCALE_FACTOR=1.0
+      - SECRET_KEY=your-secret-key-here
+      - ACCESS_TOKEN_EXPIRE_MINUTES=30
+      - TEMP_VIDEOS_DIR=temp_videos
+      - SAVED_WORKOUTS_DIR=saved_workouts
+      - USER_PROFILES_DIR=user_profiles
+      - MEDIAPIPE_DISABLE_GPU=1
+      - TF_CPP_MIN_LOG_LEVEL=3
+      - MP_MIN_DETECTION_CONFIDENCE=0.5
+      - MP_MIN_TRACKING_CONFIDENCE=0.5
+      - MP_ENABLE_SEGMENTATION=False
+      - MP_MODEL_COMPLEXITY=1
+      - PYTHONUNBUFFERED=1
+      - LOG_LEVEL=DEBUG
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8002/health"]
+      test: ["CMD-SHELL", "curl -f http://localhost:8002/health || exit 1"]
       interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
+      timeout: 30s
+      retries: 5
+      start_period: 180s
     restart: unless-stopped
     networks:
       - posefit-network

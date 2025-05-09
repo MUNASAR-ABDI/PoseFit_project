@@ -34,12 +34,18 @@ RUN chmod +x generate_key.py && python generate_key.py
 # Copy the rest of the application
 COPY . .
 
+# Create a startup script
+RUN echo '#!/bin/bash\n\
+echo "Starting backend service..."\n\
+python api_server.py\n\
+' > /app/start.sh && chmod +x /app/start.sh
+
 # Expose the port the app runs on
 EXPOSE 8002
 
 # Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
+HEALTHCHECK --interval=30s --timeout=30s --start-period=180s --retries=5 \
     CMD curl -f http://localhost:8002/health || exit 1
 
 # Command to run the application
-CMD ["python", "api_server.py"] 
+CMD ["/app/start.sh"] 

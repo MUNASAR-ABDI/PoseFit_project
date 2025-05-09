@@ -12,8 +12,8 @@ ENV NEXT_FONT_GOOGLE_MOCKED=true
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies with --legacy-peer-deps to handle compatibility issues
-RUN npm install --legacy-peer-deps
+# Clean install dependencies
+RUN npm ci
 
 # Copy the rest of the application
 COPY . .
