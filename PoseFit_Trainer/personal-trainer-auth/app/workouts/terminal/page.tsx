@@ -35,37 +35,6 @@ export default function TerminalPage() {
   const totalSets = parseInt(searchParams.get('sets') || '0');
   const repsPerSet = parseInt(searchParams.get('reps') || '0');
 
-  useEffect(() => {
-    if (!exercise || !totalSets || !repsPerSet) {
-      router.push('/workouts/configure');
-      return;
-    }
-    
-    addOutput(`Welcome to Terminal Workout Mode`);
-    addOutput(`Exercise: ${exercise}`);
-    addOutput(`Sets: ${totalSets}, Reps per set: ${repsPerSet}`);
-    addOutput('Press "Start Workout" to begin...');
-  }, []);
-
-  useEffect(() => {
-    initializeWorkout();
-    return () => {
-      // Cleanup any active session
-      if (sessionId) {
-        fetch('/api/workout/stop', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ session_id: sessionId }),
-          credentials: 'include'
-        }).catch(console.error);
-      }
-    };
-  }, []);
-
-  const addOutput = (message: string) => {
-    setOutput(prev => [...prev, message]);
-  };
-
   const initializeWorkout = async () => {
     try {
       const response = await fetch('/api/workout/start', {
@@ -99,6 +68,22 @@ export default function TerminalPage() {
       console.error('Error initializing workout:', error);
       setError(error.message);
     }
+  };
+
+  useEffect(() => {
+    if (exercise && repsPerSet && totalSets) {
+      router.push(`/workout?exercise=${exercise}&reps=${repsPerSet}&sets=${totalSets}`);
+    }
+  }, [exercise, repsPerSet, totalSets, router]);
+
+  useEffect(() => {
+    if (sessionId) {
+      initializeWorkout();
+    }
+  }, [sessionId, initializeWorkout]);
+
+  const addOutput = (message: string) => {
+    setOutput(prev => [...prev, message]);
   };
 
   const startProcessing = async () => {

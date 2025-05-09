@@ -18,6 +18,13 @@ interface GoalData {
   weeklyProgress: number
 }
 
+interface GoalProgress {
+  goal: string;
+  current: number;
+  target: number;
+  unit: string;
+}
+
 export function GoalsProgressCard() {
   const [loading, setLoading] = useState(true)
   const [goalData, setGoalData] = useState<GoalData | null>(null)

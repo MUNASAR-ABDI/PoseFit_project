@@ -4,20 +4,8 @@ import { useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { clearInvalidSession } from "@/lib/actions/auth";
 
-// Simple helper to get cookies on the client side
-function getCookie(name: string): string | null {
-  const cookies = document.cookie.split(';');
-  for (let i = 0; i < cookies.length; i++) {
-    const cookie = cookies[i].trim();
-    if (cookie.startsWith(name + '=')) {
-      return cookie.substring(name.length + 1);
-    }
-  }
-  return null;
-}
-
 interface SessionManagerProps {
-  user: any | null;
+  user: unknown | null;
   hasSession: boolean;
 }
 

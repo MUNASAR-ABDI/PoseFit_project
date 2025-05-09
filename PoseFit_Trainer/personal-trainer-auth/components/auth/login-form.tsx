@@ -8,7 +8,7 @@ import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { login } from "@/lib/actions/auth"
+import { signIn } from "next-auth/react"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 
@@ -50,10 +50,8 @@ export function LoginForm() {
         const error = await response.json();
         setError(error.error || "An error occurred during login");
       }
-    } catch (error) {
-      setError("An unexpected error occurred. Please try again.")
-    } finally {
-      setIsLoading(false)
+    } catch {
+      setIsLoading(false);
     }
   }
 
