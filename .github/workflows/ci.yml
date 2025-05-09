@@ -42,7 +42,7 @@ jobs:
         python -c "import api_server; print('API server imported successfully')" || echo "Failed to import api_server"
         # Try to create minimal test file to verify health endpoint works
         echo "Creating minimal test server with health endpoint"
-        cat > test_server.py <<EOF
+        cat > test_server.py << 'EOF'
 from fastapi import FastAPI
 import uvicorn
 import os
@@ -92,7 +92,7 @@ EOF
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '18'
+        node-version: '20'
     
     - name: Install dependencies
       run: |
