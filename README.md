@@ -226,4 +226,7 @@ The application includes several performance optimizations:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details. 
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Git Setup
+This project is now under version control with Git. 
