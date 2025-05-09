@@ -192,7 +192,7 @@ export default function TerminalPage() {
             </div>
             <div className="mt-4 p-4 bg-muted rounded-lg">
               <p className="font-medium">Feedback:</p>
-              <p className="text-muted-foreground">{metrics.feedback || &apos;Initializing...&apos;}</p>
+              <p className="text-muted-foreground">{metrics.feedback || 'Initializing...'}</p>
             </div>
           </div>
         </CardContent>
