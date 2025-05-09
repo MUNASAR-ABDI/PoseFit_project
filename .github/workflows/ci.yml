@@ -128,9 +128,23 @@ jobs:
       run: |
         docker build -t posefit-frontend PoseFit_Trainer/personal-trainer-auth
     
-    - name: Test docker-compose
+    - name: Test docker compose
       run: |
-        docker-compose up -d
-        sleep 10
+        # Create .env files if they don't exist
+        echo "DATABASE_URL=file:./dev.db" > PoseFit_Trainer/personal-trainer-auth/.env
+        echo "HOST=0.0.0.0" > PoseFit_Trainer/AI_PersonTrainer\ backend/.env
+        echo "PORT=8002" >> PoseFit_Trainer/AI_PersonTrainer\ backend/.env
+        
+        # Start services
+        docker compose up -d
+        
+        # Wait for services to start
+        echo "Waiting for services to start..."
+        sleep 30
+        
+        # Check backend health
+        echo "Checking backend health..."
         curl -f http://localhost:8002/health || exit 1
-        docker-compose down 
+        
+        # Stop services
+        docker compose down 
