@@ -36,11 +36,19 @@ jobs:
         python generate_key.py
         python api_server.py &
         # Wait for server to start
-        sleep 5
+        sleep 15
     
     - name: Test API health
       run: |
-        curl -f http://localhost:8002/health || exit 1
+        for i in {1..5}; do
+          if curl -f http://localhost:8002/health; then
+            exit 0
+          fi
+          echo "Waiting for backend to be healthy... ($i)"
+          sleep 3
+        done
+        echo "Backend health check failed!"
+        exit 1
   
   frontend-tests:
     runs-on: ubuntu-latest
