@@ -21,8 +21,10 @@ COPY requirements.txt .
 # Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Create necessary directories
-RUN mkdir -p temp_videos static templates user_profiles saved_workouts
+# Create necessary directories with proper permissions
+RUN mkdir -p temp_videos static templates user_profiles saved_workouts && \
+    chmod -R 755 /app && \
+    chown -R nobody:nogroup /app
 
 # Copy env.example file first
 COPY env.example .
@@ -34,11 +36,9 @@ RUN chmod +x generate_key.py && python generate_key.py
 # Copy the rest of the application
 COPY . .
 
-# Create start script
-RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'echo "Starting backend service..."' >> /app/start.sh && \
-    echo 'python api_server.py' >> /app/start.sh && \
-    chmod 755 /app/start.sh
+# Set proper permissions for all files
+RUN chmod -R 755 /app && \
+    chown -R nobody:nogroup /app
 
 # Expose the port the app runs on
 EXPOSE 8002
@@ -47,5 +47,8 @@ EXPOSE 8002
 HEALTHCHECK --interval=30s --timeout=30s --start-period=180s --retries=5 \
     CMD curl -f http://localhost:8002/health || exit 1
 
+# Switch to non-root user
+USER nobody
+
 # Command to run the application
-CMD ["/app/start.sh"] 
+CMD ["python", "api_server.py"] 

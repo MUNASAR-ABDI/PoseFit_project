@@ -6,7 +6,6 @@ services:
     ports:
       - "8002:8002"
     volumes:
-      - "./PoseFit_Trainer/AI_PersonTrainer backend:/app"
       - backend_data:/app/user_profiles
       - backend_videos:/app/saved_workouts
       - backend_temp:/app/temp_videos
