@@ -13,7 +13,8 @@ ENV NEXT_FONT_GOOGLE_MOCKED=true
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install --no-optional --no-package-lock
+RUN npm install -g autoprefixer postcss
 
 # Copy the rest of the application
 COPY . .
