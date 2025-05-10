@@ -36,7 +36,7 @@ jobs:
         run: |
           echo "Current directory: $(pwd)"
           ls -la
-          rm -rf node_modules package-lock.json
+          rm -rf node_modules
           npm ci
           npm install next@14.1.0 react@18.2.0 react-dom@18.2.0 --save
       
