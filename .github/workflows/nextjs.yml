@@ -73,16 +73,19 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+        working-directory: posefit-landing
       - name: Install specific Next.js version
         run: npm install next@14.1.0
+        working-directory: posefit-landing
       - name: Build with Next.js
         run: npx next build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+        working-directory: posefit-landing
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: posefit-landing/out
 
   # Deployment job
   deploy:
