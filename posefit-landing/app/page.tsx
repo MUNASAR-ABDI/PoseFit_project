@@ -124,7 +124,7 @@ export default function Home() {
           accentColor="linear-gradient(90deg, #6a26cd, #8547e9)"
           buttonText="Open Assistant"
           icon={<AssistantIcon />}
-          url={process.env.NEXT_PUBLIC_ASSISTANT_URL || "http://localhost:3001"}
+          url="/assistant"
         />
         
         {/* PoseFit Trainer Card */}
@@ -139,7 +139,7 @@ export default function Home() {
           accentColor="linear-gradient(90deg, #6a26cd, #8547e9)"
           buttonText="Start Training"
           icon={<TrainerIcon />}
-          url={process.env.NEXT_PUBLIC_TRAINER_URL || "http://localhost:3000"}
+          url="/trainer"
         />
       </div>
 

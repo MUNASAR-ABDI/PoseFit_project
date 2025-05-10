@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 interface AppCardProps {
   title: string;
@@ -10,6 +11,10 @@ interface AppCardProps {
   buttonText: string;
   icon: React.ReactNode;
   url: string;
+}
+
+function isInternalUrl(url: string) {
+  return url.startsWith('/');
 }
 
 export default function AppCard({
@@ -48,7 +53,6 @@ export default function AppCard({
         e.currentTarget.style.boxShadow = '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2)';
         e.currentTarget.style.borderColor = '#2d2040';
       }}
-      onClick={() => window.location.href = url}
     >
       {/* Accent color bar */}
       <div style={{
@@ -106,32 +110,69 @@ export default function AppCard({
         ))}
       </ul>
       
-      <div style={{
-        padding: '0.75rem 1.5rem',
-        background: '#6a26cd',
-        color: 'white',
-        borderRadius: '0.75rem',
-        fontSize: '1.1rem',
-        fontWeight: 'semibold',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-        transition: 'background 0.3s ease',
-      }}
-      onMouseOver={(e) => {
-        e.currentTarget.style.background = '#8547e9';
-      }}
-      onMouseOut={(e) => {
-        e.currentTarget.style.background = '#6a26cd';
-      }}
-      >
-        {buttonText}
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem' }}>
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
-      </div>
+      {isInternalUrl(url) ? (
+        <Link href={url} legacyBehavior>
+          <a style={{
+            padding: '0.75rem 1.5rem',
+            background: '#6a26cd',
+            color: 'white',
+            borderRadius: '0.75rem',
+            fontSize: '1.1rem',
+            fontWeight: 'semibold',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            transition: 'background 0.3s ease',
+            textDecoration: 'none',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = '#8547e9';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = '#6a26cd';
+          }}
+          >
+            {buttonText}
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem' }}>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </Link>
+      ) : (
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            padding: '0.75rem 1.5rem',
+            background: '#6a26cd',
+            color: 'white',
+            borderRadius: '0.75rem',
+            fontSize: '1.1rem',
+            fontWeight: 'semibold',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: '100%',
+            transition: 'background 0.3s ease',
+            textDecoration: 'none',
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.background = '#8547e9';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.background = '#6a26cd';
+          }}
+        >
+          {buttonText}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ marginLeft: '0.5rem' }}>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      )}
     </div>
   );
 } 
