@@ -34,11 +34,8 @@ RUN chmod +x generate_key.py && python generate_key.py
 # Copy the rest of the application
 COPY . .
 
-# Create a startup script
-RUN echo '#!/bin/bash\n\
-echo "Starting backend service..."\n\
-python api_server.py\n\
-' > /app/start.sh && chmod +x /app/start.sh
+# Make start.sh executable
+RUN chmod +x /app/start.sh
 
 # Expose the port the app runs on
 EXPOSE 8002
