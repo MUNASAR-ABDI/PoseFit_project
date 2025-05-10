@@ -34,8 +34,10 @@ RUN chmod +x generate_key.py && python generate_key.py
 # Copy the rest of the application
 COPY . .
 
-# Fix line endings and permissions for start.sh
-RUN sed -i 's/\r$//' /app/start.sh && \
+# Create start script
+RUN echo '#!/bin/sh' > /app/start.sh && \
+    echo 'echo "Starting backend service..."' >> /app/start.sh && \
+    echo 'python api_server.py' >> /app/start.sh && \
     chmod 755 /app/start.sh
 
 # Expose the port the app runs on
