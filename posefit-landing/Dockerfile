@@ -1,4 +1,4 @@
-FROM node:20-alpine
+FROM node:18-alpine
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ ENV NEXT_FONT_GOOGLE_MOCKED=true
 COPY package*.json ./
 
 # Install dependencies with legacy peer deps
-RUN npm install --legacy-peer-deps
+RUN npm install
 
 # Copy the rest of the application
 COPY . .
