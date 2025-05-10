@@ -1,3 +1,55 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities; 
+@tailwind utilities;
+
+:root {
+  --background: #0d0d14;
+  --foreground: #fafafa;
+  --page-background: linear-gradient(135deg, #0f0320 0%, #1e1132 50%, #2a1447 100%);
+  --text-color: #f0f0ff;
+  --text-secondary: #b09acf;
+  --text-tertiary: #9a84c9;
+  --heading-gradient: linear-gradient(90deg, #ffd700, #ffecb3);
+  --card-background: #191628;
+  --border-color: #2d2040;
+  --accent-purple: #6a26cd;
+  --accent-gold: #ffd700;
+  --button-bg: #6a26cd;
+  --button-hover: #8547e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0d14;
+    --foreground: #fafafa;
+  }
+}
+
+[data-theme='dark'] {
+  --background: #0d0d14;
+  --foreground: #fafafa;
+  --page-background: linear-gradient(135deg, #0f0320 0%, #1e1132 50%, #2a1447 100%);
+  --text-color: #f0f0ff;
+  --text-secondary: #b09acf;
+  --text-tertiary: #9a84c9;
+  --heading-gradient: linear-gradient(90deg, #ffd700, #ffecb3);
+  --card-background: #191628;
+  --border-color: #2d2040;
+}
+
+[data-theme='light'] {
+  --background: #0d0d14;
+  --foreground: #fafafa;
+  --page-background: linear-gradient(135deg, #0f0320 0%, #1e1132 50%, #2a1447 100%);
+  --text-color: #f0f0ff;
+  --text-secondary: #b09acf;
+  --text-tertiary: #9a84c9;
+  --heading-gradient: linear-gradient(90deg, #ffd700, #ffecb3);
+  --card-background: #191628;
+  --border-color: #2d2040;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+} 
