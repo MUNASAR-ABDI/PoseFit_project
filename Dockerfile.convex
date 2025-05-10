@@ -1,0 +1,16 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Copy package.json and package-lock.json
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci
+
+# Copy the convex directory and required files
+COPY convex/ ./convex/
+COPY tsconfig.json ./
+
+# Run convex development server
+CMD ["npx", "convex", "dev"] 
