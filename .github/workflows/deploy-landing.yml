@@ -26,9 +26,6 @@ jobs:
         with:
           node-version: "20"
       
-      - name: Change to landing directory
-        run: cd posefit-landing
-      
       - name: Setup Pages
         uses: actions/configure-pages@v5
         with:
@@ -37,6 +34,9 @@ jobs:
       - name: Install dependencies
         working-directory: ./posefit-landing
         run: |
+          echo "Current directory: $(pwd)"
+          ls -la
+          rm -rf node_modules package-lock.json
           npm ci
           npm install next@14.1.0 react@18.2.0 react-dom@18.2.0 --save
       
@@ -44,6 +44,51 @@ jobs:
         working-directory: ./posefit-landing
         run: |
           mkdir -p app
+          
+          # Create next.config.js
+          cat > next.config.js << 'EOL'
+          /** @type {import('next').NextConfig} */
+          const nextConfig = {
+            reactStrictMode: true,
+            output: 'export',
+            images: {
+              unoptimized: true
+            }
+          };
+          
+          module.exports = nextConfig;
+          EOL
+          
+          # Create tailwind.config.js
+          cat > tailwind.config.js << 'EOL'
+          /** @type {import('tailwindcss').Config} */
+          module.exports = {
+            content: [
+              './pages/**/*.{js,ts,jsx,tsx,mdx}',
+              './components/**/*.{js,ts,jsx,tsx,mdx}',
+              './app/**/*.{js,ts,jsx,tsx,mdx}',
+            ],
+            theme: {
+              extend: {
+                backgroundImage: {
+                  'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                  'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+                },
+              },
+            },
+            plugins: [],
+          };
+          EOL
+          
+          # Create postcss.config.js
+          cat > postcss.config.js << 'EOL'
+          module.exports = {
+            plugins: {
+              tailwindcss: {},
+              autoprefixer: {},
+            },
+          };
+          EOL
           
           # Create layout.tsx
           cat > app/layout.tsx << 'EOL'
@@ -125,6 +170,16 @@ jobs:
         run: npx next build
         env:
           NEXT_TELEMETRY_DISABLED: 1
+      
+      - name: Debug Output Directory
+        working-directory: ./posefit-landing
+        run: |
+          echo "Listing directories:"
+          ls -la
+          echo "Looking for 'out' directory:"
+          ls -la out || echo "out directory not found"
+          echo "Creating out directory if it doesn't exist"
+          mkdir -p out
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
